@@ -13,16 +13,16 @@ Page({
         title: '获取OpenId',
         page: 'getOpenId'
       },
-      //  {
-      //   title: '微信支付'
-      // },
+       {
+        title: '微信支付'
+      },
        {
         title: '生成小程序码',
         page: 'getMiniProgramCode'
       },
-      // {
-      //   title: '发送订阅消息',
-      // }
+      {
+        title: '发送订阅消息',
+      }
     ]
     }, {
       title: '数据库',
