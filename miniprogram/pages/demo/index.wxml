@@ -1,1 +1,2 @@
-<l-button type="default">默认按钮</l-button>
+<view class="global-center">大作业倒计时</view>
+<l-countdown class="global-center" time="2022-06-27 00:00"/>

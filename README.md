@@ -19,3 +19,14 @@ https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.h
 ## 组件库
 
 https://github.com/TaleLin/lin-ui
+
+调试基础库 `2.23.4`
+
+**在 miniprogram 文件夹下**
+
+```
+$ npm init -y
+$ npm install lin-ui
+```
+
+然后在 IDE 中构建 npm

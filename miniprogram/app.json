@@ -2,6 +2,7 @@
   "pages": [
     "pages/demo/index",
     "pages/lab/index",
+    "pages/search/index",
     "pages/index/index",
     "pages/getOpenId/index",
     "pages/getMiniProgramCode/index",
@@ -38,6 +39,19 @@
       "text": "实验室",
       "iconPath": "icons/tab-bar/lab.png",
       "selectedIconPath": "icons/tab-bar/lab-selected.png"
+    }, {
+      "pagePath": "pages/search/index",
+      "text": "搜索",
+      "iconPath": "icons/tab-bar/search.png",
+      "selectedIconPath": "icons/tab-bar/search-selected.png"
     }]
+  },
+  "usingComponents": {
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "l-transition": "/miniprogram_npm/lin-ui/transition/index",
+    "l-search-bar": "/miniprogram_npm/lin-ui/search-bar/index",
+    "l-list": "/miniprogram_npm/lin-ui/list/index",
+    "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
+    "l-countdown": "/miniprogram_npm/lin-ui/countdown/index"
   }
 }
