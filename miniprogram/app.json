@@ -36,7 +36,7 @@
       "selectedIconPath": "icons/tab-bar/demo-selected.png"
     }, {
       "pagePath": "pages/lab/index",
-      "text": "实验室",
+      "text": "关于",
       "iconPath": "icons/tab-bar/lab.png",
       "selectedIconPath": "icons/tab-bar/lab-selected.png"
     }, {
