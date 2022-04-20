@@ -1,2 +1,22 @@
-<view class="global-center">大作业倒计时</view>
-<l-countdown class="global-center" time="2022-06-27 00:00"/>
+<l-countdown class="text-center" time="2022-06-27 00:00" />
+<l-segment bind:linchange="changeTabs">
+  <l-segment-item tab="计算理论" key="one" />
+  <l-segment-item tab="计算机系统" key="two" />
+  <l-segment-item tab="程序设计语言" key="three" />
+</l-segment>
+
+<view wx:if="{{showList[0]}}">
+  <view class="text-center">
+    计算理论导引
+  </view>
+</view>
+<view wx:if="{{showList[1]}}">
+  <view class="text-center">
+    CSAPP
+  </view>
+</view>
+<view wx:if="{{showList[2]}}">
+  <view class="text-center">
+    Software Foundations
+  </view>
+</view>
