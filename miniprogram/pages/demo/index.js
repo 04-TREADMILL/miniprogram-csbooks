@@ -14,7 +14,29 @@ Page({
       "https://vgalaxies.github.io/img/cover/82542746_p0.jpg",
       "https://vgalaxies.github.io/img/cover/84349038_p0.png",
     ],
-    html: '<div>hello</div>',
+    html: "<div>hello</div>",
+    radio: [
+      { id: 1, value: "arch linux", name: "foo" },
+      { id: 2, value: "ubuntu", name: "bar" },
+    ],
+    display: "",
+    items: [
+      {
+        id: 0,
+        name: "main",
+        isActive: true,
+      },
+      {
+        id: 1,
+        name: "foo",
+        isActive: false,
+      },
+      {
+        id: 2,
+        name: "bar",
+        isActive: false,
+      },
+    ],
   },
 
   numHandler(e) {
@@ -30,6 +52,30 @@ Page({
     console.log(data);
     this.setData({
       num: parseInt(this.data.num) + parseInt(data),
+    });
+  },
+
+  radioHandler(e) {
+    console.log(e.detail.value);
+    let display = e.detail.value;
+    this.setData({
+      display,
+    });
+  },
+
+  itemHandler(e) {
+    console.log(e);
+    const { index } = e.detail;
+    console.log(index);
+
+    const { items } = this.data;
+
+    items.forEach((v, i) => {
+      i == index ? (v.isActive = true) : (v.isActive = false);
+    });
+
+    this.setData({
+      items,
     });
   },
 

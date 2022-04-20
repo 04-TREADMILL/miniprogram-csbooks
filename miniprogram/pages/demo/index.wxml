@@ -22,7 +22,7 @@
 <text user-select="{{true}}" decode="{{true}}">普&nbsp;通</text>
 <image src="https://vgalaxies.github.io/img/avatar.JPG" lazy-load="{{true}}" mode="aspectFit" />
 <swiper autoplay="{{true}}" interval="{{5000}}" duration="{{500}}" hidden>
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{imgUrls}}" wx:key="*this">
         <swiper-item>
             <image mode="widthFix" class="swiper-image" src="{{item}}" />
         </swiper-item>
@@ -30,3 +30,16 @@
 </swiper>
 <navigator url="../index/index">回到主页</navigator>
 <rich-text nodes="{{html}}" hidden></rich-text>
+<icon type="success" size="23" color="" />
+<radio-group bindchange="radioHandler">
+    <view wx:for="{{radio}}" wx:for-item="item" wx:key="id">
+        <radio value="{{item.value}}" />
+        {{item.name}}
+    </view>
+</radio-group>
+<view>{{display}}</view>
+<my-tabs items="{{items}}" binditemChange="itemHandler">
+    <view wx:if="{{items[0].isActive}}">?</view>
+    <view wx:elif="{{items[1].isActive}}">??</view>
+    <view wx:elif="{{items[2].isActive}}">???</view>
+</my-tabs>
