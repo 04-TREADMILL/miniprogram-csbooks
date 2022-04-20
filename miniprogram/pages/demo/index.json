@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "my-tabs": "../../components/tabs/tabs",
-    "l-button": "../../miniprogram_npm/lin-ui/button/index"
+    "l-button": "/miniprogram_npm/lin-ui/button/index"
   }
 }

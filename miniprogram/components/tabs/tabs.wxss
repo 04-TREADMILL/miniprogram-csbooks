@@ -1,4 +1,0 @@
-/* components/tabs/tabs.wxss */
-.active {
-  color: red;
-}
