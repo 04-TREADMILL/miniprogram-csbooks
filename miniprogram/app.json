@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/demo/index",
+    "pages/lab/index",
     "pages/index/index",
     "pages/getOpenId/index",
     "pages/getMiniProgramCode/index",
@@ -23,5 +24,20 @@
     "enablePullDownRefresh": true
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "tabBar": {
+    "selectedColor": "#14227A",
+    "color": "#000000",
+    "list": [{
+      "pagePath": "pages/demo/index",
+      "text": "主页",
+      "iconPath": "icons/tab-bar/demo.png",
+      "selectedIconPath": "icons/tab-bar/demo-selected.png"
+    }, {
+      "pagePath": "pages/lab/index",
+      "text": "实验室",
+      "iconPath": "icons/tab-bar/lab.png",
+      "selectedIconPath": "icons/tab-bar/lab-selected.png"
+    }]
+  }
 }
