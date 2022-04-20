@@ -18,8 +18,4 @@ https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.h
 
 ## 组件库
 
-https://github.com/Tencent/weui-wxss
-
 https://github.com/TaleLin/lin-ui
-
-https://github.com/wux-weapp/wux-weapp/
