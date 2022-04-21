@@ -45,8 +45,6 @@ http://docs.xzeu.com/#/
 
 ### 主页
 
-1人
-
 首页推送
 
 ### 分类（内含搜索）
@@ -70,3 +68,23 @@ http://docs.xzeu.com/#/
 ### 数据收集
 
 评论区（可选）
+
+
+
+## 后端
+
+使用微信云托管
+
+- 控制台
+
+https://cloud.weixin.qq.com/cloudrun/console
+
+- 代码
+
+https://github.com/VGalaxies/wxcloudrun-golang
+
+- GORM
+
+https://gorm.io/zh_CN/docs/
+
+https://www.bilibili.com/video/BV1E64y1472a

@@ -19,7 +19,7 @@ Page({
     });
   },
 
-  foo() {
+  add() {
     wx.cloud.callContainer({
       config: {
         env: "prod-8gt4mz04386985ef",
@@ -31,6 +31,22 @@ Page({
       method: "POST",
       data: {
         action: "inc",
+      },
+    });
+  },
+
+  clear() {
+    wx.cloud.callContainer({
+      config: {
+        env: "prod-8gt4mz04386985ef",
+      },
+      path: "/api/count",
+      header: {
+        "X-WX-SERVICE": "golang-6i3q",
+      },
+      method: "POST",
+      data: {
+        action: "clear",
       },
     });
   },

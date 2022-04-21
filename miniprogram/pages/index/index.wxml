@@ -18,4 +18,5 @@
   </view>
 </view>
 
-<l-button bind:lintap="foo" class="text-center">demo</l-button>
+<l-button bind:lintap="add" class="text-center">add</l-button>
+<l-button bind:lintap="clear" class="text-center">clear</l-button>
