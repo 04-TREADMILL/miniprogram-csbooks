@@ -7,16 +7,15 @@
 
 <view wx:if="{{showList[0]}}">
   <view class="text-center">
-    计算理论导引
   </view>
 </view>
 <view wx:if="{{showList[1]}}">
   <view class="text-center">
-    CSAPP
   </view>
 </view>
 <view wx:if="{{showList[2]}}">
   <view class="text-center">
-    Software Foundations
   </view>
 </view>
+
+<l-button bind:lintap="foo" class="text-center">demo</l-button>
