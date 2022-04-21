@@ -1,4 +1,3 @@
-// pages/lab/index.js
 Page({
 
   /**
