@@ -47,11 +47,15 @@ http://docs.xzeu.com/#/
 
 首页推送
 
+
+
 ### 分类
 
 分类
 
 搜索栏
+
+
 
 ### 我的
 
@@ -59,15 +63,24 @@ http://docs.xzeu.com/#/
 
 历史记录
 
+
+
 ### 后端
 
-书本数据管理，包括分类和具体信息
+书籍数据
 
-提供用户收藏以及历史浏览
+用户数据
+
+评论系统
+
+
 
 ### 数据收集
 
-评论
+https://dms.cloud.tencent.com/#/login
+
+- 用户名 root
+- 密码 XpPdc6rG
 
 
 
@@ -102,14 +115,9 @@ https://www.bilibili.com/video/BV1E64y1472a
 ```
 /api/book POST
 
-action
-- exact
-- fuzzy
-- category
-
-hint
-- name
-- categoryId
+body
+- action : exact / fuzzy / category
+- hint : name / categoryId
 ```
 
 
