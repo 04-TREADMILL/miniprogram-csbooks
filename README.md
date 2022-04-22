@@ -47,7 +47,7 @@ http://docs.xzeu.com/#/
 
 首页推送
 
-### 分类（内含搜索）
+### 分类
 
 分类
 
@@ -55,7 +55,7 @@ http://docs.xzeu.com/#/
 
 ### 我的
 
-收藏书
+收藏
 
 历史记录
 
@@ -67,11 +67,11 @@ http://docs.xzeu.com/#/
 
 ### 数据收集
 
-评论区（可选）
+评论
 
 
 
-## 后端
+## 后台
 
 使用微信云托管
 
@@ -88,3 +88,53 @@ https://github.com/VGalaxies/wxcloudrun-golang
 https://gorm.io/zh_CN/docs/
 
 https://www.bilibili.com/video/BV1E64y1472a
+
+
+
+### note
+
+[Limitations of the GET method in HTTP - Dropbox](https://dropbox.tech/developers/limitations-of-the-get-method-in-http)
+
+
+
+### API 约定
+
+```
+/api/book POST
+
+action
+- exact
+- fuzzy
+- category
+
+hint
+- name
+- categoryId
+```
+
+
+
+### 前端调用参考
+
+```js
+  get() {
+    wx.cloud
+      .callContainer({
+        config: {
+          env: "prod-8gt4mz04386985ef",
+        },
+        path: "/api/count",
+        header: {
+          "X-WX-SERVICE": "golang-6i3q",
+        },
+        method: "GET",
+        data: {},
+      })
+      .then((resp) => {
+        console.log(resp);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  },
+```

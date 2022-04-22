@@ -19,35 +19,27 @@ Page({
     });
   },
 
-  add() {
-    wx.cloud.callContainer({
-      config: {
-        env: "prod-8gt4mz04386985ef",
-      },
-      path: "/api/count",
-      header: {
-        "X-WX-SERVICE": "golang-6i3q",
-      },
-      method: "POST",
-      data: {
-        action: "inc",
-      },
-    });
-  },
-
-  clear() {
-    wx.cloud.callContainer({
-      config: {
-        env: "prod-8gt4mz04386985ef",
-      },
-      path: "/api/count",
-      header: {
-        "X-WX-SERVICE": "golang-6i3q",
-      },
-      method: "POST",
-      data: {
-        action: "clear",
-      },
-    });
+  getBook() {
+    wx.cloud
+      .callContainer({
+        config: {
+          env: "prod-8gt4mz04386985ef",
+        },
+        path: "/api/book",
+        header: {
+          "X-WX-SERVICE": "golang-6i3q",
+        },
+        method: "POST",
+        data: {
+          action: "exact",
+          hint: "Models of Computation",
+        },
+      })
+      .then((resp) => {
+        console.log(resp);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   },
 });
