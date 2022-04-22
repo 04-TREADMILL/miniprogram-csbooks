@@ -110,15 +110,36 @@ https://www.bilibili.com/video/BV1E64y1472a
 
 
 
+### 声明模型
+
+```go
+// 书籍模型
+type BookModel struct {
+	Id          int32
+	Name        string
+	Category    int32
+	Author      string
+	Description string
+}
+
+// 书籍分类模型
+type CategoryModel struct {
+	Id   int32
+	Name string
+}
+```
+
+图片资源存放在网络，使用 ID 区分，默认尺寸为 `1000x1500`
+
+```
+$ convert -resize 1000x1500\! xxx.pdf\[0\] xxx.png
+```
+
+
+
 ### API 约定
 
-```
-/api/book POST
-
-body
-- action : exact / fuzzy / category
-- hint : name / categoryId
-```
+参考 https://github.com/VGalaxies/wxcloudrun-golang#readme
 
 
 
