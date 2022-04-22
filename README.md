@@ -116,10 +116,11 @@ https://www.bilibili.com/video/BV1E64y1472a
 // 书籍模型
 type BookModel struct {
 	Id          int32
-	Name        string
-	Category    int32
+	Name        string `gorm:"unique"`
+	CategoryId  int32
 	Author      string
 	Description string
+	ImageLink   string
 }
 
 // 书籍分类模型
@@ -129,7 +130,11 @@ type CategoryModel struct {
 }
 ```
 
-图片资源存放在网络，使用 ID 区分，默认尺寸为 `1000x1500`
+图片资源存放在微信云托管对象存储
+
+使用 ID 命名
+
+默认尺寸为 `1000x1500`
 
 ```
 $ convert -resize 1000x1500\! xxx.pdf\[0\] xxx.png
