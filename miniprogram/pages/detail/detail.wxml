@@ -1,0 +1,19 @@
+<!--pages/detail/detail.wxml-->
+<view class='container'>
+
+    <view>
+      <view class='img'>
+      <image src = "../../book_cover/{{title}}.jpg"></image>
+      </view>
+    </view>
+    
+    <view class = "content">
+    <text class = "intro">简介\n</text>
+     <view class = "intro">{{content}}</view>
+
+    </view>
+
+
+    <!-- <view class='navigation'>
+    </view> -->
+</view>

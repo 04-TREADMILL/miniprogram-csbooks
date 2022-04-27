@@ -1,58 +1,62 @@
 {
-    "pages": [
-        "pages/index/index",
-        "pages/about/index",
-        "pages/search/index",
-        "pages/categories/index"
-    ],
-    "window": {
-        "backgroundColor": "#F6F6F6",
-        "backgroundTextStyle": "dark",
-        "navigationBarBackgroundColor": "#F6F6F6",
-        "navigationBarTitleText": "DEMO",
-        "navigationBarTextStyle": "black",
-        "enablePullDownRefresh": true
-    },
-    "sitemapLocation": "sitemap.json",
-    "style": "v2",
-    "tabBar": {
-        "selectedColor": "#14227A",
-        "color": "#000000",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "text": "主页",
-                "iconPath": "icons/tab-bar/index.png",
-                "selectedIconPath": "icons/tab-bar/index-selected.png"
-            },
-            {
-                "pagePath": "pages/about/index",
-                "text": "关于",
-                "iconPath": "icons/tab-bar/about.png",
-                "selectedIconPath": "icons/tab-bar/about-selected.png"
-            },
-            {
-                "pagePath": "pages/search/index",
-                "text": "搜索",
-                "iconPath": "icons/tab-bar/search.png",
-                "selectedIconPath": "icons/tab-bar/search-selected.png"
-            },
-            {
-                "pagePath":"pages/categories/index",
-                "text": "分类",
-                "iconPath": "icons/tab-bar/categories.png",
-                "selectedIconPath": "icons/tab-bar/categories-selected.png"
-            }
-        ]
-    },
-    "usingComponents": {
-        "l-button": "/miniprogram_npm/lin-ui/button/index",
-        "l-transition": "/miniprogram_npm/lin-ui/transition/index",
-        "l-search-bar": "/miniprogram_npm/lin-ui/search-bar/index",
-        "l-list": "/miniprogram_npm/lin-ui/list/index",
-        "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
-        "l-countdown": "/miniprogram_npm/lin-ui/countdown/index",
-        "l-segment": "/miniprogram_npm/lin-ui/segment/index",
-        "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index"
-    }
+  "pages": [
+    "pages/index/index",
+    "pages/about/index",
+    "pages/search/index",
+    "pages/categories/index",
+    "pages/books/index",
+    "pages/classes/index",
+    "pages/catalogue/catalogue",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "DEMO",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "tabBar": {
+    "selectedColor": "#14227A",
+    "color": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "icons/tab-bar/index.png",
+        "selectedIconPath": "icons/tab-bar/index-selected.png"
+      },
+      {
+        "pagePath": "pages/about/index",
+        "text": "关于",
+        "iconPath": "icons/tab-bar/about.png",
+        "selectedIconPath": "icons/tab-bar/about-selected.png"
+      },
+      {
+        "pagePath": "pages/search/index",
+        "text": "搜索",
+        "iconPath": "icons/tab-bar/search.png",
+        "selectedIconPath": "icons/tab-bar/search-selected.png"
+      },
+      {
+        "pagePath": "pages/classes/index",
+        "text": "分类",
+        "iconPath": "icons/tab-bar/categories.png",
+        "selectedIconPath": "icons/tab-bar/categories-selected.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "l-transition": "/miniprogram_npm/lin-ui/transition/index",
+    "l-search-bar": "/miniprogram_npm/lin-ui/search-bar/index",
+    "l-list": "/miniprogram_npm/lin-ui/list/index",
+    "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
+    "l-countdown": "/miniprogram_npm/lin-ui/countdown/index",
+    "l-segment": "/miniprogram_npm/lin-ui/segment/index",
+    "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index"
+  }
 }
