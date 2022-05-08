@@ -32,7 +32,7 @@ Page({
         method: "POST",
         data: {
           action: "exact",
-          hint: "Models of Computation",
+          hint: "深入理解计算机系统",
         },
       })
       .then((resp) => {

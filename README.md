@@ -96,50 +96,6 @@ https://cloud.weixin.qq.com/cloudrun/console
 
 https://github.com/VGalaxies/wxcloudrun-golang
 
-- GORM
-
-https://gorm.io/zh_CN/docs/
-
-https://www.bilibili.com/video/BV1E64y1472a
-
-
-
-### note
-
-[Limitations of the GET method in HTTP - Dropbox](https://dropbox.tech/developers/limitations-of-the-get-method-in-http)
-
-
-
-### 声明模型
-
-```go
-// 书籍模型
-type BookModel struct {
-	Id          int32
-	Name        string `gorm:"unique"`
-	CategoryId  int32
-	Author      string
-	Description string
-	ImageLink   string
-}
-
-// 书籍分类模型
-type CategoryModel struct {
-	Id   int32
-	Name string
-}
-```
-
-图片资源存放在微信云托管对象存储
-
-使用 ID 命名
-
-默认尺寸为 `1000x1500`
-
-```
-$ convert -resize 1000x1500\! xxx.pdf\[0\] xxx.png
-```
-
 
 
 ### API 约定
@@ -151,24 +107,27 @@ $ convert -resize 1000x1500\! xxx.pdf\[0\] xxx.png
 ### 前端调用参考
 
 ```js
-  get() {
-    wx.cloud
-      .callContainer({
-        config: {
-          env: "prod-8gt4mz04386985ef",
-        },
-        path: "/api/count",
-        header: {
-          "X-WX-SERVICE": "golang-6i3q",
-        },
-        method: "GET",
-        data: {},
-      })
-      .then((resp) => {
-        console.log(resp);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  },
+getBook() {
+wx.cloud
+  .callContainer({
+    config: {
+      env: "prod-8gt4mz04386985ef",
+    },
+    path: "/api/book",
+    header: {
+      "X-WX-SERVICE": "golang-6i3q",
+    },
+    method: "POST",
+    data: {
+      action: "exact",
+      hint: "深入理解计算机系统",
+    },
+  })
+  .then((resp) => {
+    console.log(resp);
+  })
+  .catch((e) => {
+    console.log(e);
+  });
+}
 ```
