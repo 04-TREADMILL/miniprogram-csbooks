@@ -65,87 +65,95 @@ Page({
   },
 
   login() {
-    var _this = this
-    wx.login({
-      success(res) {
-        console.log(res)
-        if (res.code) {
-          wx.cloud
-            .callContainer({
-              config: {
-                env: "prod-8gt4mz04386985ef",
-              },
-              path: "/api/onLogin",
-              header: {
-                "X-WX-SERVICE": "golang-6i3q",
-              },
-              method: "POST",
-              data: {
-                code: res.code
-              },
-            })
-            .then((resp) => {
-              console.log(resp);
+    var _this = this;
+    wx.checkSession({
+      success() {
+        // session_key 未过期，并且在本生命周期一直有效
+        console.log("valid");
+        try {
+          var value = wx.getStorageSync("3rd_session")
+          if (value) {
+            console.log(value);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      fail() {
+        // session_key 已经失效，需要重新执行登录流程
+        console.log("invalid");
+        wx.login({
+          success(res) {
+            console.log(res)
+            if (res.code) {
+              wx.cloud
+                .callContainer({
+                  config: {
+                    env: "prod-8gt4mz04386985ef",
+                  },
+                  path: "/api/onLogin",
+                  header: {
+                    "X-WX-SERVICE": "golang-6i3q",
+                  },
+                  method: "POST",
+                  data: {
+                    code: res.code
+                  },
+                })
+                .then((resp) => {
+                  console.log(resp);
 
-              try {
-                wx.setStorageSync("3rd_session", resp.data.data);
-              } catch (e) {
-                console.log(e);
-              }
+                  try {
+                    wx.setStorageSync("3rd_session", resp.data.data);
+                  } catch (e) {
+                    console.log(e);
+                  }
 
-              try {
-                var value = wx.getStorageSync("3rd_session")
-                if (value) {
-                  console.log(value);
-                }
-              } catch (e) {
-                console.log(e);
-              }
-
-              wx.showModal({
-                title: '温馨提示',
-                content: '亲，授权微信登录后才能正常使用小程序功能',
-                success: (res) => {
-                  console.log(res);
-                  if (res.confirm) {
-                    wx.getUserProfile({
-                      desc: '获取你的昵称、头像、地区及性别',
-                      success: res => {
-                        console.log(res);
-                        _this.setData({
-                          userInfo: res.userInfo,
-                          hasUserInfo: true
+                  wx.showModal({
+                    title: '温馨提示',
+                    content: '亲，授权微信登录后才能正常使用小程序功能',
+                    success: (res) => {
+                      console.log(res);
+                      if (res.confirm) {
+                        wx.getUserProfile({
+                          desc: '获取你的昵称、头像、地区及性别',
+                          success: res => {
+                            console.log(res);
+                            _this.setData({
+                              userInfo: res.userInfo,
+                              hasUserInfo: true
+                            })
+                          },
+                          fail: res => {
+                            console.log(res);
+                            wx.showToast({
+                              title: '🤨',
+                              icon: 'error',
+                              duration: 2000
+                            });
+                          }
                         })
-                      },
-                      fail: res => {
-                        console.log(res);
+                      } else if (res.cancel) {
                         wx.showToast({
                           title: '🤨',
                           icon: 'error',
                           duration: 2000
                         });
                       }
-                    })
-                  } else if (res.cancel) {
-                    wx.showToast({
-                      title: '🤨',
-                      icon: 'error',
-                      duration: 2000
-                    });
-                  }
-                }
-              })
-            })
-
-            .catch((e) => {
-              console.log(e);
-            });
-        } else {
-          console.log('res.code fails: ' + res.errMsg)
-        }
-      },
-      fail(res) {
-        console.log('wx.login fails: ' + res);
+                    }
+                  })
+                })
+                .catch((e) => {
+                  console.log(e);
+                });
+            } else {
+              console.log('res.code fails: ' + res.errMsg)
+            }
+          },
+          fail(res) {
+            console.log('wx.login fails: ' + res);
+          }
+        })
       }
     })
   },
