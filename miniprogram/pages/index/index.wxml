@@ -11,7 +11,7 @@
 </view>
 <view wx:if="{{showList[1]}}">
   <view class="text-center">
-    <l-button bind:lintap="getBook" class="text-center">GET CSAPP</l-button>
+    <!-- <l-button bind:lintap="getBook" class="text-center">GET CSAPP</l-button> -->
   </view>
 </view>
 <view wx:if="{{showList[2]}}">

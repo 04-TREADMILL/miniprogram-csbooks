@@ -4,9 +4,13 @@ Page({
   },
 
   changeTabs(e) {
-    const { currentIndex } = e.detail;
+    const {
+      currentIndex
+    } = e.detail;
     console.log(currentIndex);
-    const { showList } = this.data;
+    const {
+      showList
+    } = this.data;
 
     showList.forEach((_, i, arr) => {
       i == currentIndex ? (arr[i] = true) : (arr[i] = false);

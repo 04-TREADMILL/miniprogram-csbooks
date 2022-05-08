@@ -1,1 +1,8 @@
 <l-avatar class="text-center" src="https://vgalaxy.gitee.io/img/avatar.JPG" />
+
+<block wx:if="{{!hasUserInfo}}">
+  <l-button bind:lintap="login" class="text-center">login</l-button>
+</block>
+<block wx:else>
+  <text class="text-center text-xl">{{userInfo.nickName}}</text>
+</block>

@@ -22,7 +22,7 @@ https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.h
 
 https://github.com/TaleLin/lin-ui
 
-调试基础库 `2.23.4`
+使用**最新**的调试基础库
 
 **在 miniprogram 文件夹下**
 
