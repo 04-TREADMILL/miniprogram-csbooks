@@ -1,9 +1,12 @@
-<l-avatar class="text-center" src="https://vgalaxy.gitee.io/img/avatar.JPG" />
-
 <block wx:if="{{!hasUserInfo}}">
-  <l-button bind:lintap="register" class="text-center">注册</l-button>
-  <l-button bind:lintap="login" class="text-center">登陆</l-button>
+  <block wx:if="{{!hasSessionKey}}">
+    <l-button bind:lintap="register" class="text-center">登陆</l-button>
+  </block>
+  <block wx:else>
+    <l-button bind:lintap="login" class="text-center">上传到服务器</l-button>
+  </block>
 </block>
 <block wx:else>
+  <l-avatar class="text-center" src="{{userInfo.avatarUrl}}" />
   <text class="text-center text-xl">{{userInfo.nickName}}</text>
 </block>

@@ -6,13 +6,38 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
+    hasSessionKey: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    var _this = this
+    wx.checkSession({
+      success: res => {
+        var userInfo
+        try {
+          userInfo = wx.getStorageSync("userinfo")
+        } catch (e) {
+          console.log(e)
+          return
+        }
 
+        _this.setData({
+          userInfo: userInfo,
+          hasUserInfo: true,
+          hasSessionKey: true
+        })
+      },
+      fail: res => {
+        _this.setData({
+          userInfo: {},
+          hasUserInfo: false,
+          hasSessionKey: false
+        })
+      }
+    })
   },
 
   /**
@@ -69,21 +94,23 @@ Page({
     wx.checkSession({
       success: res => {
         // session_key 未过期，并且在本生命周期一直有效
-        console.log("valid");
-
-        var openId
+        console.log("valid")
+        console.log(res)
 
         // get openid
+        var openId
         try {
           openId = wx.getStorageSync("openid")
         } catch (e) {
-          console.log(e);
-          return;
+          console.log(e)
+          return
         }
 
         const {
           userInfo
-        } = this.data;
+        } = _this.data
+
+        console.log(userInfo)
 
         // POST /api/loginSet
         wx.cloud
@@ -102,26 +129,33 @@ Page({
               avatar: userInfo.avatarUrl
             },
           }).then(resp => {
-            console.log(resp);
+            console.log(resp)
             if (resp.data.code != 0) {
-              console.log(resp.data.errorMsg);
-              return;
+              console.log(resp.data.errorMsg)
+              return
             } else {
               _this.setData({
                 hasUserInfo: true
               })
             }
           }).catch(e => {
-            console.log(e);
-            return;
-          });
+            console.log(e)
+            return
+          })
       },
 
       fail: res => {
         // session_key 已经失效，需要重新执行登录流程
-        console.log("invalid");
-        console.log(res);
-        return;
+        console.log("invalid")
+        console.log(res)
+
+        _this.setData({
+          userInfo: {},
+          hasUserInfo: false,
+          hasSessionKey: false
+        })
+
+        return
       }
     })
   },
@@ -148,15 +182,15 @@ Page({
                 code: res.code
               },
             }).then(resp => {
-              console.log(resp);
+              console.log(resp)
 
               if (resp.data.code == 0) {
                 // store openid
                 try {
-                  wx.setStorageSync("openid", resp.data.data);
+                  wx.setStorageSync("openid", resp.data.data)
                 } catch (e) {
-                  console.log(e);
-                  return;
+                  console.log(e)
+                  return
                 }
 
                 // get user profile
@@ -168,18 +202,27 @@ Page({
                       wx.getUserProfile({
                         desc: '获取你的昵称、头像、地区及性别',
                         success: res => {
-                          console.log(res);
+                          console.log(res)
+
                           _this.setData({
-                            userInfo: res.userInfo
+                            userInfo: res.userInfo,
+                            hasSessionKey: true
                           })
+
+                          try {
+                            wx.setStorageSync("userinfo", res.userInfo)
+                          } catch (e) {
+                            console.log(e)
+                            return
+                          }
                         },
                         fail: res => {
-                          console.log(res);
+                          console.log(res)
                           wx.showToast({
                             title: '🤨',
                             icon: 'error',
                             duration: 2000
-                          });
+                          })
                         }
                       })
                     } else if (res.cancel) {
@@ -187,23 +230,23 @@ Page({
                         title: '🤨',
                         icon: 'error',
                         duration: 2000
-                      });
+                      })
                     }
                   }
-                });
+                })
               } else {
-                console.log(resp.data.errorMsg);
+                console.log(resp.data.errorMsg)
               }
             }).catch(e => {
-              console.log(e);
-            });
+              console.log(e)
+            })
         } else {
-          console.log(res.errMsg);
+          console.log(res.errMsg)
         }
       },
 
       fail: res => {
-        console.log(res);
+        console.log(res)
       }
     })
   },
