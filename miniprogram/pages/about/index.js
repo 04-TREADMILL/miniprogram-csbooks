@@ -65,95 +65,145 @@ Page({
   },
 
   login() {
-    var _this = this;
+    var _this = this
     wx.checkSession({
-      success() {
+      success: res => {
         // session_key 未过期，并且在本生命周期一直有效
         console.log("valid");
+
+        var openId
+
+        // get openid
         try {
-          var value = wx.getStorageSync("3rd_session")
-          if (value) {
-            console.log(value);
-          }
+          openId = wx.getStorageSync("openid")
         } catch (e) {
           console.log(e);
+          return;
         }
+
+        const {
+          userInfo
+        } = this.data;
+
+        // POST /api/loginSet
+        wx.cloud
+          .callContainer({
+            config: {
+              env: "prod-8gt4mz04386985ef",
+            },
+            path: "/api/loginSet",
+            header: {
+              "X-WX-SERVICE": "golang-6i3q",
+            },
+            method: "POST",
+            data: {
+              openid: openId,
+              nickname: userInfo.nickName,
+              avatar: userInfo.avatarUrl
+            },
+          }).then(resp => {
+            console.log(resp);
+            if (resp.data.code != 0) {
+              console.log(resp.data.errorMsg);
+              return;
+            } else {
+              _this.setData({
+                hasUserInfo: true
+              })
+            }
+          }).catch(e => {
+            console.log(e);
+            return;
+          });
       },
-      fail() {
+
+      fail: res => {
         // session_key 已经失效，需要重新执行登录流程
         console.log("invalid");
-        wx.login({
-          success(res) {
-            console.log(res)
-            if (res.code) {
-              wx.cloud
-                .callContainer({
-                  config: {
-                    env: "prod-8gt4mz04386985ef",
-                  },
-                  path: "/api/onLogin",
-                  header: {
-                    "X-WX-SERVICE": "golang-6i3q",
-                  },
-                  method: "POST",
-                  data: {
-                    code: res.code
-                  },
-                })
-                .then((resp) => {
-                  console.log(resp);
+        console.log(res);
+        return;
+      }
+    })
+  },
 
-                  try {
-                    wx.setStorageSync("3rd_session", resp.data.data);
-                  } catch (e) {
-                    console.log(e);
-                  }
+  register() {
+    var _this = this
+    wx.login({
+      success: res => {
+        console.log(res)
 
-                  wx.showModal({
-                    title: '温馨提示',
-                    content: '亲，授权微信登录后才能正常使用小程序功能',
-                    success: (res) => {
-                      console.log(res);
-                      if (res.confirm) {
-                        wx.getUserProfile({
-                          desc: '获取你的昵称、头像、地区及性别',
-                          success: res => {
-                            console.log(res);
-                            _this.setData({
-                              userInfo: res.userInfo,
-                              hasUserInfo: true
-                            })
-                          },
-                          fail: res => {
-                            console.log(res);
-                            wx.showToast({
-                              title: '🤨',
-                              icon: 'error',
-                              duration: 2000
-                            });
-                          }
-                        })
-                      } else if (res.cancel) {
-                        wx.showToast({
-                          title: '🤨',
-                          icon: 'error',
-                          duration: 2000
-                        });
-                      }
-                    }
-                  })
-                })
-                .catch((e) => {
+        // POST /api/loginInit
+        if (res.code) {
+          wx.cloud
+            .callContainer({
+              config: {
+                env: "prod-8gt4mz04386985ef",
+              },
+              path: "/api/loginInit",
+              header: {
+                "X-WX-SERVICE": "golang-6i3q",
+              },
+              method: "POST",
+              data: {
+                code: res.code
+              },
+            }).then(resp => {
+              console.log(resp);
+
+              if (resp.data.code == 0) {
+                // store openid
+                try {
+                  wx.setStorageSync("openid", resp.data.data);
+                } catch (e) {
                   console.log(e);
+                  return;
+                }
+
+                // get user profile
+                wx.showModal({
+                  title: '温馨提示',
+                  content: '亲，授权微信登录后才能正常使用小程序功能',
+                  success: res => {
+                    if (res.confirm) {
+                      wx.getUserProfile({
+                        desc: '获取你的昵称、头像、地区及性别',
+                        success: res => {
+                          console.log(res);
+                          _this.setData({
+                            userInfo: res.userInfo
+                          })
+                        },
+                        fail: res => {
+                          console.log(res);
+                          wx.showToast({
+                            title: '🤨',
+                            icon: 'error',
+                            duration: 2000
+                          });
+                        }
+                      })
+                    } else if (res.cancel) {
+                      wx.showToast({
+                        title: '🤨',
+                        icon: 'error',
+                        duration: 2000
+                      });
+                    }
+                  }
                 });
-            } else {
-              console.log('res.code fails: ' + res.errMsg)
-            }
-          },
-          fail(res) {
-            console.log('wx.login fails: ' + res);
-          }
-        })
+              } else {
+                console.log(resp.data.errorMsg);
+              }
+            }).catch(e => {
+              console.log(e);
+            });
+        } else {
+          console.log(res.errMsg);
+        }
+      },
+
+      fail: res => {
+        console.log(res);
       }
     })
   },
