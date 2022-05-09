@@ -89,7 +89,7 @@ Page({
 
   },
 
-  login() {
+  upload() {
     var _this = this
     wx.checkSession({
       success: res => {
@@ -160,7 +160,7 @@ Page({
     })
   },
 
-  register() {
+  login() {
     var _this = this
     wx.login({
       success: res => {
@@ -194,6 +194,7 @@ Page({
                 }
 
                 // get user profile
+                // 异步 - 引入上传操作
                 wx.showModal({
                   title: '温馨提示',
                   content: '亲，授权微信登录后才能正常使用小程序功能',

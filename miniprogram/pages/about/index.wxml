@@ -1,9 +1,9 @@
 <block wx:if="{{!hasUserInfo}}">
   <block wx:if="{{!hasSessionKey}}">
-    <l-button bind:lintap="register" class="text-center">登陆</l-button>
+    <l-button bind:lintap="login" class="text-center">登陆</l-button>
   </block>
   <block wx:else>
-    <l-button bind:lintap="login" class="text-center">上传到服务器</l-button>
+    <l-button bind:lintap="upload" class="text-center">上传</l-button>
   </block>
 </block>
 <block wx:else>
