@@ -16,6 +16,8 @@ Page({
     var _this = this
     wx.checkSession({
       success: res => {
+
+        // assume userinfo is cached
         var userInfo
         try {
           userInfo = wx.getStorageSync("userinfo")
@@ -106,6 +108,7 @@ Page({
           return
         }
 
+        // get userinfo
         const {
           userInfo
         } = _this.data
@@ -210,6 +213,7 @@ Page({
                             hasSessionKey: true
                           })
 
+                          // for onLoad
                           try {
                             wx.setStorageSync("userinfo", res.userInfo)
                           } catch (e) {
