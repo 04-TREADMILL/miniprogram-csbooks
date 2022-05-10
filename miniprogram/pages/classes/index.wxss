@@ -6,26 +6,33 @@
 }
 
 .c-item:first-child {
-  width: 25%;
-  margin-right: 20rpx;
-  background: #efefef;
+  width: 33.4%;
+  margin-right: 40rpx;
+  background: #2e4644;
+  position: absolute; /* 要约束所在位置的子元素的位置要设置成绝对 */
+  left: 0; 
 }
 
 .c-item:last-child {
-  width: 75%;
+  width: 66.6%;
   overflow: auto;
+  position: absolute;
+  right: 0;
 }
 
 .c-title-list {
+  vertical-align: middle;
   text-align: center;
-  height: 100rpx;
-  line-height: 100rpx;
+  height: 115rpx;
+  width: 250rpx;
+  line-height: 60rpx;
   border-bottom: 1px solid #e9e9e9;
-  color: #666;
+  color: rgb(252, 250, 247);
+
 }
 
 .c-title-list-active {
-  background: #4796ff;
+  background: #61e3ec;
   color: #fff;
 }
 

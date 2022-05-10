@@ -1,165 +1,154 @@
-
+// pages/Test/index.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-      titles: [{
-          name: '原理'
-      }, {
-          name: '网络'
-      }, {
-          name: '思维'
-      }, {
-          name: 'shit'
-      }, {
-          name: '数学'
-      }, {
-          name: 'CS'
-      }, {
-          name: 'EE'
-      }, {
-          name: 'AI'
-      }, ],
+    /**
+     * 页面的初始数据
+     */
+    data: {
       num: 0,
-      lists: [
-          [{
-              name: '编译原理',
-              summary: '快点来看我'
-          }, {
-              name: '书名',
-              summary: '简介简介',
-              content: 'shit'
-          }, {
-              name: '书名',
-              summary: '这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介'
-          }, {
-              name: '书名',
-              summary: '简介'
-          }, {
-              name: '书名',
-              summary: '简介'
-          }, {
-              name: '书名',
-              summary: '简介'
-          }, {
-              name: '书名',
-              summary: '简介'
-          }, {
-              name: '书名',
-              summary: '简介'
-          }],
-          [{
-              name: '书名1',
-              summary: '这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介'
-          }, {
-              name: '书名2',
-              summary: '简介'
-          }],
-          [{
-              name: '书名1',
-              summary: '这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介'
-          }, {
-              name: '书名2',
-              summary: '简介'
-          }],
-          [{
-              name: '书名1',
-              summary: '这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介'
-          }, {
-              name: '书名2',
-              summary: '简介'
-          }],
-          [{
-              name: '书名1',
-              summary: '这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介'
-          }, {
-              name: '书名2',
-              summary: '简介'
-          }],
-          [{
-              name: '书名1',
-              summary: '这里是简介这里是简介这里是简介这里是简介这里是简介这里是简介'
-          }, {
-              name: '书名2',
-              summary: '简介'
-          }]
-      ],
-      types: []
+      Length_of_cate: 0,
+      Categories:[],// ID + CategoryID
+      types: [],
+      Content: [],// ID + Name + Description + Author
+      Lists:[],
+      //All details
+    },
+  
+  changeList: function(e){
+    var n = e.currentTarget.dataset.index;
+    this.setData({
+      num: n,
+      types: this.data.Content[n]
+    })
   },
-  changeList: function(e) {
-      var n = e.currentTarget.dataset.index
-      this.setData({
-          num: n,
-          types: this.data.lists[n]
-      })
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  readBook: function(e) {
-    var bookname = e.currentTarget.dataset.bookname,
-        bookcontent = e.currentTarget.dataset.bookcontent;     //获取传递的值
+  
+  readBook: function(e){
+    var bookName = e.currentTarget.dataset.bookName,
+        bookDesc = e.currentTarget.dataset.bookContent;
         wx.navigateTo({
-        url: "../detail/detail?title=" + bookname + '&con=' + bookcontent//传递参数
+          url:"../detail/detail?title=" + bookName + '&con=' + bookDesc
+        });
+  },
+  
+    /**
+     * 生命周期函数--监听页面加载
+     */
+  
+    onLoad(options) {
 
-      });
-},
-
-
-  onLoad: function(options) {
-      this.setData({
-          types: this.data.lists[0]
+      wx.cloud
+      .callContainer({
+        config: {
+          env: "prod-8gt4mz04386985ef",
+        },
+        path: "/api/category",
+        header: {
+          "X-WX-SERVICE": "golang-6i3q",
+        },
+        method: "POST",
+        data: {
+          action: "all",
+          hint: "",
+        },
       })
+      .then((resp) => {
+        var t = resp.data.data;
+        this.setData({
+          Length_of_cate: t.length,
+          Categories: t
+        });
+      })
+      .catch((e) => {
+      });
+  
+      for(var p=0;p<12;p++) 
+      {       
+              wx.cloud
+              .callContainer({
+                config: {
+                  env: "prod-8gt4mz04386985ef",
+                },
+                path: "/api/book",
+                header: {
+                  "X-WX-SERVICE": "golang-6i3q",
+                },
+                method: "POST",
+                data: {
+                  action: "category",
+                  hint: ""+p
+                },
+              })
+              .then((resp) => {
+                var Datas = resp.data.data;
+                var temp  = this.data.Lists;
+                temp.push(Datas);
+                this.setData({Lists:temp})
+                
+                var Con = this.data.Content;
+                Con.push(Datas);
+                this.setData({
+                  Content: Con
+                })
+                // console.log(Con);          
+              })
+              .catch((e) => {
+                console.log(e);
+              });
+      }
+              // console.log("this.data");
+              // console.log(this.data);
+        
+          console.log(this.data);
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
-})
+  
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady() {
+        this.setData({
+            types: this.data.Content[0]
+          });
+    },
+  
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow() {
+  
+    },
+  
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide() {
+  
+    },
+  
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload() {
+  
+    },
+  
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh() {
+  
+    },
+  
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom() {
+  
+    },
+  
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage() {
+  
+    }
+  })

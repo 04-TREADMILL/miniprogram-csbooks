@@ -1,22 +1,28 @@
+
 <view class='container'>
     <view class='wrap'>
         <view class='search'>
         </view>
         <view class='content'>
+        
             <view class='c-item'>
-                <view class="c-title-list {{num == index?'c-title-list-active':' '}}" wx:for='{{titles}}' wx:key='' data-index='{{index}}' catchtap='changeList' >
-                    {{item.name}}
+                <view class="c-title-list {{num == index?'c-title-list-active':' '}}" 
+                wx:for='{{Categories}}' wx:key='' 
+                data-index='{{index}}' catchtap='changeList' >
+                    {{item.Name}}
                 </view>
             </view>
             
             <view class='c-item'>
-               <view class='types' wx:for='{{types}}' wx:key='' catchtap='readBook' data-bookname='{{item.name}}' data-bookcontent='{{item.summary}}'>
+               <view class='types' 
+               wx:for='{{types}}' wx:key='' catchtap='readBook' 
+               data-bookName='{{item.Name}}' data-bookContent='{{item.Author}}'>
                     <view class='type' >
                         <view class='img'>img</view>
                     </view>
                     <view class='type' >
-                        <view class='type-name'>{{item.name}}</view>
-                        <view class='type-summary'> {{item.summary}}</view>
+                        <view class='type-name'>{{item.Name}}</view>
+                      
                     </view>
                </view>
             </view>
