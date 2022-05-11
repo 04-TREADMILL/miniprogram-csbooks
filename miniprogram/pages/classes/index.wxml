@@ -1,30 +1,25 @@
 
-<view class='container'>
-    <view class='wrap'>
-        <view class='search'>
-        </view>
-        <view class='content'>
+<view class='content'>
+        <l-tabpanel class='c-item'>
+            <view class="text-shadow text-sm shadow solids-bottom c-title-list {{num == index?'c-title-list-active':' '}}" 
+            wx:for='{{Categories}}' wx:key='' 
+            data-index='{{index}}' catchtap='changeList' >
+                {{item.Name}}
+            </view>
+        </l-tabpanel>
         
-            <view class='c-item'>
-                <view class="c-title-list {{num == index?'c-title-list-active':' '}}" 
-                wx:for='{{Categories}}' wx:key='' 
-                data-index='{{index}}' catchtap='changeList' >
-                    {{item.Name}}
+        <view class='c-item'>
+           <view class='types shadow solid ' 
+           wx:for='{{types}}' wx:key='' catchtap='readBook' 
+           data-bookName='{{item.Name}}' data-bookContent='{{item.Description}}' >
+                <view class='type' >
+                    <view class='img'>
+                    <image src = "https://s2.loli.net/2022/05/11/tU5KEjOmJVLW6xe.jpg" style="width:50px" mode="widthFix"></image></view>
                 </view>
-            </view>
-            
-            <view class='c-item'>
-               <view class='types' 
-               wx:for='{{types}}' wx:key='' catchtap='readBook' 
-               data-bookName='{{item.Name}}' data-bookContent='{{item.Description}}'>
-                    <view class='type' >
-                        <view class='img'>img</view>
-                    </view>
-                    <view class='type' >
-                        <view class='type-name'>{{item.Name}}</view>
-                    </view>
-               </view>
-            </view>
+                <view class='type' >
+                    <view class='type-name'>{{item.Name}}</view>
+                    <view class='type-summary'>{{item.Author}}</view>
+                </view>
+           </view>
         </view>
-    </view>
-</view>
+</view> 
