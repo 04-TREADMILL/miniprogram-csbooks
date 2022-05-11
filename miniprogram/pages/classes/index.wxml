@@ -11,10 +11,13 @@
         <view class='c-item'>
            <view class='types shadow solid ' 
            wx:for='{{types}}' wx:key='' catchtap='readBook' 
-           data-bookName='{{item.Name}}' data-bookContent='{{item.Description}}' >
+           data-bookName='{{item.Name}}' 
+           data-bookImg='{{item.ImageUrl}}'
+           data-bookContent='{{item.Description}}' >
                 <view class='type' >
                     <view class='img'>
-                    <image src = "https://s2.loli.net/2022/05/11/tU5KEjOmJVLW6xe.jpg" style="width:50px" mode="widthFix"></image></view>
+                    <image src = '{{item.ImageUrl}}' style="width:50px" mode="widthFix">
+                    </image></view>
                 </view>
                 <view class='type' >
                     <view class='type-name'>{{item.Name}}</view>

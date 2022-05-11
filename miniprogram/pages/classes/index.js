@@ -26,8 +26,9 @@ Page({
     console.log(e.currentTarget.dataset);
     var bookname = e.currentTarget.dataset.bookname;
     var bookdesc = e.currentTarget.dataset.bookcontent;
+    var bookimg  = e.currentTarget.dataset.bookimg;
         wx.navigateTo({
-          url:"../detail/detail?title=" + bookname + '&con=' + bookdesc
+          url:"../detail/detail?title=" + bookname + '&con=' + bookdesc +'&img=' + bookimg
         });
   },
   
@@ -99,7 +100,7 @@ Page({
               // console.log("this.data");
               // console.log(this.data);
         
-          // console.log(this.data);
+          console.log(this.data);
   },
   
     /**

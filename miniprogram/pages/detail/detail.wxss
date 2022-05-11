@@ -2,7 +2,7 @@
   width: 300rpx; 
   height: 500rpx; 
   margin: 0 auto;
-  margin-top: 10rpx;
+  margin-top: 20rpx;
 }
 .rate{
   margin: 0 auto;
@@ -13,6 +13,9 @@
   margin: 0 auto;
 
 }
+.bg-grey{
+  background-color: #ffffff;
+}
 .bg-gray{
   background-color:#b1bbb9
 }
@@ -20,6 +23,7 @@
   color: black;
 }
 .Desc{
+  border-radius: 20rpx;
   text-align: left;
   margin-right: 20rpx;
   margin-left: 20rpx;

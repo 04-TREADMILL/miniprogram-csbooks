@@ -6,7 +6,8 @@ Page({
    */
   data: {
       title: "",
-      content: ""
+      content: "",
+      Img:""
   },
 
   /**
@@ -17,7 +18,8 @@ Page({
       console.log(options);
       this.setData({
           title: options.title,
-          content: options.con
+          content: options.con,
+          Img: options.img
       })
       wx.setNavigationBarTitle({
           title: this.data.title         //页面标题为路由参数

@@ -10,8 +10,10 @@ class = "text-center"
     front-icon-color="#3683D6"> 
   {{title}}
 </l-notice-bar> -->
+<view class ="bg-grey solids shadow">
 <view class="Cover solid">
-  <image  src = "https://s2.loli.net/2022/05/11/tU5KEjOmJVLW6xe.jpg"></image>
+  <image  src = '{{Img}}'></image>
+</view>
 </view>
 
 <view class="cu-bar bg-gray solids shadow">
@@ -29,6 +31,6 @@ class = "text-center"
 
 <l-loadmore show="{{true}}" class = "bottom">
   <view slot="content">
-      此处是页面内容
+      Read more
   </view>
 </l-loadmore>
