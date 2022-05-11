@@ -5,19 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-      title: '',
-      content: ''
+      title: "",
+      content: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  // openList: function(e){
-  //     wx.navigateTo({
-  //         url: '../catalogue/catalogue'
-  //     })
-  // },
+
   onLoad: function (options) {
+      console.log(options);
       this.setData({
           title: options.title,
           content: options.con

@@ -1,3 +1,10 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "l-button":"/miniprogram_npm/lin-ui/button/index",
+    "l-notice-bar": "/miniprogram_npm/lin-ui/notice-bar/index",
+    "l-textarea": "/miniprogram_npm/lin-ui/textarea/index",
+    "l-rate":"/miniprogram_npm/lin-ui/rate/index",
+    "l-calendar":"/miniprogram_npm/lin-ui/calendar/index",
+    "l-loadmore":"/miniprogram_npm/lin-ui/loadmore/index"
+  }
 }

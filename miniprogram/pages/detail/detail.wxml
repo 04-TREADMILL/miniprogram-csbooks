@@ -1,19 +1,34 @@
-<!--pages/detail/detail.wxml-->
-<view class='container'>
+<!-- pages/detail/detail.wxml -->
 
-    <view>
-      <view class='img'>
-      <image src = "../../book_cover/{{title}}.jpg"></image>
-      </view>
-    </view>
-    
-    <view class = "content">
-    <text class = "intro">简介\n</text>
-     <view class = "intro">{{content}}</view>
-
-    </view>
-
-
-    <!-- <view class='navigation'>
-    </view> -->
+<!-- <l-notice-bar 
+class = "text-center"
+    show="{{true}}" 
+    type="still" 
+    front-icon-name="notification" 
+    end-icon-name="close" 
+    front-icon-size="20"
+    front-icon-color="#3683D6"> 
+  {{title}}
+</l-notice-bar> -->
+<view class="Cover solid">
+  <image  src = "https://s2.loli.net/2022/05/11/tU5KEjOmJVLW6xe.jpg"></image>
 </view>
+
+<view class="cu-bar bg-gray solids shadow">
+
+            <view class="context Desc text-left ">
+                {{" "+content}}
+            </view>
+        </view>
+
+<view class = "text-center solid-top">评分</view>
+<l-rate class = "rate solids-bottom" score="3"></l-rate>
+<view>
+   <l-textarea  placeholder="说说你的看法..."  />
+</view>
+
+<l-loadmore show="{{true}}" class = "bottom">
+  <view slot="content">
+      此处是页面内容
+  </view>
+</l-loadmore>

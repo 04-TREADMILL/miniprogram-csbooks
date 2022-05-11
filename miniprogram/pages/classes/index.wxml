@@ -16,13 +16,12 @@
             <view class='c-item'>
                <view class='types' 
                wx:for='{{types}}' wx:key='' catchtap='readBook' 
-               data-bookName='{{item.Name}}' data-bookContent='{{item.Author}}'>
+               data-bookName='{{item.Name}}' data-bookContent='{{item.Description}}'>
                     <view class='type' >
                         <view class='img'>img</view>
                     </view>
                     <view class='type' >
                         <view class='type-name'>{{item.Name}}</view>
-                      
                     </view>
                </view>
             </view>

@@ -23,10 +23,11 @@ Page({
   },
   
   readBook: function(e){
-    var bookName = e.currentTarget.dataset.bookName,
-        bookDesc = e.currentTarget.dataset.bookContent;
+    console.log(e.currentTarget.dataset);
+    var bookname = e.currentTarget.dataset.bookname;
+    var bookdesc = e.currentTarget.dataset.bookcontent;
         wx.navigateTo({
-          url:"../detail/detail?title=" + bookName + '&con=' + bookDesc
+          url:"../detail/detail?title=" + bookname + '&con=' + bookdesc
         });
   },
   
@@ -98,7 +99,7 @@ Page({
               // console.log("this.data");
               // console.log(this.data);
         
-          console.log(this.data);
+          // console.log(this.data);
   },
   
     /**
