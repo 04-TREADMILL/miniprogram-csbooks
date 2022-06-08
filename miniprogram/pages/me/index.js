@@ -111,7 +111,7 @@ Page({
         // get userinfo
         const {
           userInfo
-        } = _this.data
+        } = _this.data.userInfo
 
         console.log(userInfo)
 
@@ -210,7 +210,7 @@ Page({
 
                           _this.setData({
                             userInfo: res.userInfo,
-                            hasSessionKey: true
+                            hasUserInfo: true
                           })
 
                           // for onLoad

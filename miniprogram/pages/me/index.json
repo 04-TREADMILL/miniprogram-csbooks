@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index"
+  }
+}
