@@ -7,6 +7,5 @@
   </block>
 </block>
 <block wx:else>
-  <l-avatar class="text-center" src="{{userInfo.avatarUrl}}" />
-  <text class="text-center text-xl">{{userInfo.nickName}}</text>
+  <l-avatar text="{{userInfo.nickName}}" placement="bottom" src="{{userInfo.avatarUrl}}" />
 </block>

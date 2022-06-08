@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/home/index",
-    "pages/about/index",
     "pages/search/index",
     "pages/classes/index",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/me/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -27,12 +27,6 @@
         "selectedIconPath": "icons/tab-bar/index-selected.png"
       },
       {
-        "pagePath": "pages/about/index",
-        "text": "关于",
-        "iconPath": "icons/tab-bar/about.png",
-        "selectedIconPath": "icons/tab-bar/about-selected.png"
-      },
-      {
         "pagePath": "pages/search/index",
         "text": "搜索",
         "iconPath": "icons/tab-bar/search.png",
@@ -43,6 +37,12 @@
         "text": "分类",
         "iconPath": "icons/tab-bar/categories.png",
         "selectedIconPath": "icons/tab-bar/categories-selected.png"
+      },
+      {
+        "pagePath": "pages/me/index",
+        "text": "我的",
+        "iconPath": "icons/tab-bar/about.png",
+        "selectedIconPath": "icons/tab-bar/about-selected.png"
       }
     ]
   },
