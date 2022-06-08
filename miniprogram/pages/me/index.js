@@ -5,19 +5,17 @@ Page({
    */
   data: {
     userInfo: {},
-    hasUserInfo: false,
-    hasSessionKey: false
+    hasUserInfo: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    var _this = this
     wx.checkSession({
       success: res => {
 
-        // assume userinfo is cached
+        // get userinfo
         var userInfo
         try {
           userInfo = wx.getStorageSync("userinfo")
@@ -26,17 +24,16 @@ Page({
           return
         }
 
-        _this.setData({
+        //set userinfo
+        this.setData({
           userInfo: userInfo,
-          hasUserInfo: true,
-          hasSessionKey: true
+          hasUserInfo: true
         })
       },
       fail: res => {
-        _this.setData({
+        this.setData({
           userInfo: {},
-          hasUserInfo: false,
-          hasSessionKey: false
+          hasUserInfo: false
         })
       }
     })
@@ -92,7 +89,6 @@ Page({
   },
 
   upload() {
-    var _this = this
     wx.checkSession({
       success: res => {
         // session_key 未过期，并且在本生命周期一直有效
@@ -111,7 +107,7 @@ Page({
         // get userinfo
         const {
           userInfo
-        } = _this.data.userInfo
+        } = this.data.userInfo
 
         console.log(userInfo)
 
@@ -137,7 +133,7 @@ Page({
               console.log(resp.data.errorMsg)
               return
             } else {
-              _this.setData({
+              this.setData({
                 hasUserInfo: true
               })
             }
@@ -152,24 +148,25 @@ Page({
         console.log("invalid")
         console.log(res)
 
-        _this.setData({
+        this.setData({
           userInfo: {},
           hasUserInfo: false,
           hasSessionKey: false
         })
 
+        //to do
         return
       }
     })
   },
 
   login() {
-    var _this = this
     wx.login({
       success: res => {
         console.log(res)
 
         // POST /api/loginInit
+        // get openid
         if (res.code) {
           wx.cloud
             .callContainer({
@@ -196,8 +193,8 @@ Page({
                   return
                 }
 
-                // get user profile
-                // 异步 - 引入上传操作
+                // get userinfo
+                // 提示用户上传
                 wx.showModal({
                   title: '温馨提示',
                   content: '亲，授权微信登录后才能正常使用小程序功能',
@@ -208,12 +205,13 @@ Page({
                         success: res => {
                           console.log(res)
 
-                          _this.setData({
+                          //save userinfo
+                          this.setData({
                             userInfo: res.userInfo,
                             hasUserInfo: true
                           })
 
-                          // for onLoad
+                          // save userinfo for onLoad
                           try {
                             wx.setStorageSync("userinfo", res.userInfo)
                           } catch (e) {
@@ -221,6 +219,7 @@ Page({
                             return
                           }
                         },
+        
                         fail: res => {
                           console.log(res)
                           wx.showToast({

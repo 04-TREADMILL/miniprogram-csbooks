@@ -1,11 +1,18 @@
-<block wx:if="{{!hasUserInfo}}">
-  <block wx:if="{{!hasSessionKey}}">
-    <l-button bind:lintap="login" class="text-center">登陆</l-button>
+<view class="userinfo">
+  <block wx:if="{{!hasUserInfo}}">
+    <block wx:if="{{!hasSessionKey}}">
+      <l-button bind:lintap="login" class="text-center">登陆</l-button>
+   </block>
+   <block wx:else>
+     <l-button bind:lintap="upload" class="text-center">上传</l-button>
+   </block>
   </block>
   <block wx:else>
-    <l-button bind:lintap="upload" class="text-center">上传</l-button>
+    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </block>
-</block>
-<block wx:else>
-  <l-avatar text="{{userInfo.nickName}}" placement="bottom" src="{{userInfo.avatarUrl}}" />
-</block>
+</view>
+
+<view class="content"> 
+  <l-list title="历史"  image="/icons/me/history.png"> </l-list>
+</view>
