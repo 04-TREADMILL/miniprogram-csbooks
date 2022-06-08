@@ -1,9 +1,0 @@
-<!--pages/catalogue/catalogue.wxml-->
-<view class='container'>
-    <view class='catalogue'>
-        <view class='list' wx:for='{{lists}}'  wx:key="" catchtap='viewCon'>
-            {{item.title}}
-        </view>
-        
-    </view>
-</view>

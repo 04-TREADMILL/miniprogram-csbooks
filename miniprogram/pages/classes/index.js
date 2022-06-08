@@ -55,6 +55,7 @@ Page({
       })
       .then((resp) => {
         var t = resp.data.data;
+        console.log(t);
         this.setData({
           Length_of_cate: t.length,
           Categories: t
@@ -91,7 +92,7 @@ Page({
                 this.setData({
                   Content: Con
                 })
-                // console.log(Con);          
+                console.log(Con);          
               })
               .catch((e) => {
                 console.log(e);

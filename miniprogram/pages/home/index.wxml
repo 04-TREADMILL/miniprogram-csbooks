@@ -1,0 +1,26 @@
+<!--pages/home/index.wxml-->
+<wxs src="../../wxs/subhelper.wxs" module="tools"/>
+
+<view class="homePage">
+    <view class='swiperBanner'>
+        <swiper autoplay interval='5000' circular current="0">
+            <swiper-item  wx:for="{{SwiperList}}">
+                <view catchtap="readBook"data-bookName='{{item.Name}}' 
+                data-bookImg='{{item.ImageUrl}}'
+                data-bookContent='{{item.Description}}' >
+                    <l-card type="primary" 
+                    full="{{true}}"
+                    image="{{item.ImageUrl}}"
+                    title="{{item.Name}}">
+                        <view class="content">
+                        {{tools.sub(item.Description)}}
+                        </view>
+                    </l-card>
+                </view>
+             </swiper-item>
+        </swiper>
+    </view>
+</view>
+
+  
+
