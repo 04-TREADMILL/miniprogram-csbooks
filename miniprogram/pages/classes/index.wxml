@@ -1,6 +1,7 @@
 
 <view class='content'>
-        <l-tabpanel class='c-item'>
+
+        <l-tabpanel class='c-ite main_container'>
             <view class="text-shadow text-sm shadow solids-bottom c-title-list {{num == index?'c-title-list-active':' '}}" 
             wx:for='{{Categories}}' wx:key='' 
             data-index='{{index}}' catchtap='changeList' >
@@ -8,7 +9,7 @@
             </view>
         </l-tabpanel>
         
-        <view class='c-item'>
+        <scroll-view class='c-item module-scroll-view' scroll-y="true">
            <view class='types shadow solid ' 
            wx:for='{{types}}' wx:key='' catchtap='readBook' 
            data-bookName='{{item.Name}}' 
@@ -24,5 +25,5 @@
                     <view class='type-summary'>{{item.Author}}</view>
                 </view>
            </view>
-        </view>
+        </scroll-view>
 </view> 
