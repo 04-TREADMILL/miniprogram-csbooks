@@ -6,7 +6,8 @@
     "pages/detail/detail",
     "pages/me/index",
     "pages/me/history",
-    "pages/me/subscribed"
+    "pages/me/subscribed",
+    "pages/me/comment"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

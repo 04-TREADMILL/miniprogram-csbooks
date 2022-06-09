@@ -5,17 +5,19 @@ Page({
    */
   data: {
     userInfo: {},
-    hasUserInfo: false
+    hasUserInfo: false,
+    hasSessionKey: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    var _this = this
     wx.checkSession({
       success: res => {
 
-        // get userinfo
+        // assume hasSessionId -> hasUserInfo
         var userInfo
         try {
           userInfo = wx.getStorageSync("userinfo")
@@ -24,16 +26,19 @@ Page({
           return
         }
 
-        //set userinfo
-        this.setData({
+        //set userInfo, hasUserInfo, hasSessionKey
+        _this.setData({
           userInfo: userInfo,
-          hasUserInfo: true
+          hasUserInfo: true,
+          hasSessionKey: true
         })
       },
       fail: res => {
-        this.setData({
+        //set userInfo, hasUserInfo, hasSessionKey
+        _this.setData({
           userInfo: {},
-          hasUserInfo: false
+          hasUserInfo: false,
+          hasSessionKey: false
         })
       }
     })
@@ -88,85 +93,15 @@ Page({
 
   },
 
-  upload() {
-    wx.checkSession({
-      success: res => {
-        // session_key 未过期，并且在本生命周期一直有效
-        console.log("valid")
-        console.log(res)
-
-        // get openid
-        var openId
-        try {
-          openId = wx.getStorageSync("openid")
-        } catch (e) {
-          console.log(e)
-          return
-        }
-
-        // get userinfo
-        const {
-          userInfo
-        } = this.data.userInfo
-
-        console.log(userInfo)
-
-        // POST /api/loginSet
-        wx.cloud
-          .callContainer({
-            config: {
-              env: "prod-8gt4mz04386985ef",
-            },
-            path: "/api/loginSet",
-            header: {
-              "X-WX-SERVICE": "golang-6i3q",
-            },
-            method: "POST",
-            data: {
-              openid: openId,
-              nickname: userInfo.nickName,
-              avatar: userInfo.avatarUrl
-            },
-          }).then(resp => {
-            console.log(resp)
-            if (resp.data.code != 0) {
-              console.log(resp.data.errorMsg)
-              return
-            } else {
-              this.setData({
-                hasUserInfo: true
-              })
-            }
-          }).catch(e => {
-            console.log(e)
-            return
-          })
-      },
-
-      fail: res => {
-        // session_key 已经失效，需要重新执行登录流程
-        console.log("invalid")
-        console.log(res)
-
-        this.setData({
-          userInfo: {},
-          hasUserInfo: false,
-          hasSessionKey: false
-        })
-
-        //to do
-        return
-      }
-    })
-  },
 
   login() {
+    var _this = this
     wx.login({
       success: res => {
         console.log(res)
 
         // POST /api/loginInit
-        // get openid
+        // put code, get openId
         if (res.code) {
           wx.cloud
             .callContainer({
@@ -193,8 +128,8 @@ Page({
                   return
                 }
 
-                // get userinfo
-                // 提示用户上传
+                // get userInfo
+                // 异步 - 引入上传操作
                 wx.showModal({
                   title: '温馨提示',
                   content: '亲，授权微信登录后才能正常使用小程序功能',
@@ -205,13 +140,13 @@ Page({
                         success: res => {
                           console.log(res)
 
-                          //save userinfo
-                          this.setData({
+                          _this.setData({
                             userInfo: res.userInfo,
-                            hasUserInfo: true
+                            hasUserInfo: true,
+                            hasSessionKey: true
                           })
 
-                          // save userinfo for onLoad
+                          // store userInfo
                           try {
                             wx.setStorageSync("userinfo", res.userInfo)
                           } catch (e) {
@@ -219,7 +154,6 @@ Page({
                             return
                           }
                         },
-        
                         fail: res => {
                           console.log(res)
                           wx.showToast({
@@ -236,6 +170,12 @@ Page({
                         duration: 2000
                       })
                     }
+                  },
+                  fail: res => {
+                    _this.setData({
+                      hasUserInfo: false,
+                      hasSessionKey: true
+                    })
                   }
                 })
               } else {
@@ -254,4 +194,95 @@ Page({
       }
     })
   },
+
+
+  upload() {
+    var _this = this
+    wx.checkSession({
+      success: res => {
+        // session_key 未过期，并且在本生命周期一直有效
+        console.log("valid")
+        console.log(res)
+
+        // get openid
+        var openId
+        try {
+          openId = wx.getStorageSync("openid")
+        } catch (e) {
+          console.log(e)
+          return
+        }
+
+        // get userinfo
+        const {
+          userInfo
+        } = _this.data.userInfo
+
+        console.log(userInfo)
+
+        // POST /api/loginSet
+        wx.cloud
+          .callContainer({
+            config: {
+              env: "prod-8gt4mz04386985ef",
+            },
+            path: "/api/loginSet",
+            header: {
+              "X-WX-SERVICE": "golang-6i3q",
+            },
+            method: "POST",
+            data: {
+              openid: openId,
+              nickname: userInfo.nickName,
+              avatar: userInfo.avatarUrl
+            },
+          }).then(resp => {
+            console.log(resp)
+            if (resp.data.code != 0) {
+              console.log(resp.data.errorMsg)
+              return
+            } else {
+              _this.setData({
+                hasUserInfo: true
+              })
+            }
+          }).catch(e => {
+            console.log(e)
+            return
+          })
+      },
+
+      fail: res => {
+        // session_key 已经失效，需要重新执行登录流程
+        console.log("invalid")
+        console.log(res)
+
+        _this.setData({
+          userInfo: {},
+          hasUserInfo: false,
+          hasSessionKey: false
+        })
+
+        return
+      }
+    })
+  },
+
+  click_history() {
+    wx.navigateTo({
+      url: '/pages/me/history',
+    })
+  },
+
+  click_subscribed() {
+    wx.navigateTo({
+      url: '/pages/me/subscribed',
+    })
+  },
+
+  click_comment() {
+    wx.navigateTo({
+      url: '/pages/me/comment',
+    })
+  }
 })

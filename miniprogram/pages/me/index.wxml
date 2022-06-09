@@ -1,18 +1,24 @@
-<view class="userinfo">
-  <block wx:if="{{!hasUserInfo}}">
-    <block wx:if="{{!hasSessionKey}}">
-      <l-button bind:lintap="login" class="text-center">登陆</l-button>
-   </block>
-   <block wx:else>
-     <l-button bind:lintap="upload" class="text-center">上传</l-button>
-   </block>
+<block wx:if="{{!hasUserInfo}}">
+  <block wx:if="{{!hasSessionKey}}">
+    <l-icon name="user" size="200" l-class="anonymous-avatar"></l-icon>
+    <l-button l-class="button" bind:lintap="login" class="text-center" width="300">登陆</l-button>
   </block>
   <block wx:else>
-    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <l-button l-class="button" bind:lintap="upload" class="text-center" width="300">上传</l-button>
   </block>
-</view>
+</block>
 
-<view class="content"> 
-  <l-list title="历史"  image="/icons/me/history.png"> </l-list>
-</view>
+<block wx:else>
+
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+
+  <view class="content">
+    <l-list title="历史" image="/icons/me/history.png" l-image-class="list-icon" l-class="list" l-content-class="list-text" bind:lintap="click_history"> </l-list>
+    <l-list title="收藏" image="/icons/me/subscribe.png" l-image-class="list-icon" l-class="list" l-content-class="list-text" bind:lintap="click_subscribed"> </l-list>
+    <l-list title="评论" image="/icons/me/comment.png" l-image-class="list-icon" l-class="list" l-content-class="list-text" bind:lintap="click_comment"> </l-list>
+  </view>
+
+</block>

@@ -1,6 +1,6 @@
 /**index.wxss**/
 .userinfo {
-  display: flex;  
+  display: flex;
   flex-direction: column;
   align-items: center;
   color: rgb(19, 16, 16);
@@ -16,15 +16,33 @@
   border-radius: 50%;
 }
 
-.content {
-  display: flex;  
-  flex-direction: row;
-  color: rgb(19, 16, 16);
-  font-size:0px;
-  font-weight: bold;
-  font-style: inherit;
+.button {
+  margin-top: 40px;
+  font-size: large;
+  width: 30px;
 }
 
-.l-content {
-  font-size: 100px;
+.anonymous-avatar {
+  margin-top: 70px;
+  text-align: center;
+}
+
+.list {
+  margin-left: 20px;
+  height: 50px;
+}
+
+.list-icon {
+  width: 20rpx;
+  height: 40rpx;
+}
+
+.list-text {
+  font-size: 15px;
+  font-style: initial;
+  margin-left: 10px;
+}
+
+.content {
+  margin-top: 20px;
 }
