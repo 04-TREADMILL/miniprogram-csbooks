@@ -268,21 +268,16 @@ Page({
     })
   },
 
-  click_history() {
-    wx.navigateTo({
-      url: '/pages/me/history',
-    })
-  },
-
-  click_subscribed() {
-    wx.navigateTo({
-      url: '/pages/me/subscribed',
-    })
-  },
 
   click_comment() {
     wx.navigateTo({
       url: '/pages/me/comment',
+    })
+  },
+
+  click_about() {
+    wx.navigateTo({
+      url: '/pages/me/about',
     })
   }
 })

@@ -1,0 +1,13 @@
+/* pages/me/about.wxss */
+text{
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 20px;
+  text-indent: 1.5em;
+  font-style: initial;
+}
+
+.head{
+  margin-top: 100px;
+}
+

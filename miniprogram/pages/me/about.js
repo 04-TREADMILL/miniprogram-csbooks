@@ -1,4 +1,4 @@
-// pages/me/history.js
+// pages/me/about.js
 Page({
 
   /**
