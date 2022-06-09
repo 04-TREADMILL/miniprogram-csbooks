@@ -76,3 +76,15 @@
   /* h-shadow 水平阴影的位置 v-shadow 垂直阴影的位置 blur 模糊的距离 color 阴影的颜色; */
  text-shadow: 3px 3px 4px rgba(55, 150, 204, 0.2);
 }
+.main_container{
+  overflow: hidden;
+}
+
+.module-scroll-view{
+  white-space: nowrap;
+  height: 1300rpx;
+  margin-top: 30rpx;
+}
+.module-scroll-view .item-navigator{
+  display: inline-block;
+}
