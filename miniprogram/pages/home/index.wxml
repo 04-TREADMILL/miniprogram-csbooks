@@ -3,22 +3,62 @@
 
 <view class="homePage">
     <view class='swiperBanner'>
-        <swiper autoplay interval='5000' circular current="0">
-            <swiper-item  wx:for="{{SwiperList}}">
-                <view catchtap="readBook"data-bookName='{{item.Name}}' 
-                data-bookImg='{{item.ImageUrl}}'
-                data-bookContent='{{item.Description}}' >
+                <view catchtap="readBook"data-bookName='{{SwiperList[0].Name}}' 
+                data-bookImg='{{SwiperList[0].ImageUrl}}'
+                data-bookContent='{{SwiperList[0].Description}}' >
                     <l-card type="primary" 
                     full="{{true}}"
-                    image="{{item.ImageUrl}}"
-                    title="{{item.Name}}">
+                    image="{{SwiperList[0].ImageUrl}}"
+                    title="{{SwiperList[0].Name}}">
                         <view class="content">
-                        {{tools.sub(item.Description)}}
+                        {{tools.sub(SwiperList[0].Description)}}
                         </view>
                     </l-card>
                 </view>
-             </swiper-item>
-        </swiper>
+    </view>
+    <view class='swiperBanner'>
+                <view catchtap="readBook"data-bookName='{{SwiperList[1].Name}}' 
+                data-bookImg='{{SwiperList[1].ImageUrl}}'
+                data-bookContent='{{SwiperList[1].Description}}' >
+                    <l-card type="primary" 
+                    position="right"
+                    full="{{true}}"
+                    image="{{SwiperList[1].ImageUrl}}"
+                    title="{{SwiperList[1].Name}}">
+                        <view class="content">
+                        {{tools.sub(SwiperList[1].Description)}}
+                        </view>
+                    </l-card>
+                </view>
+    </view>
+    <view class='swiperBanner'>
+                <view catchtap="readBook"data-bookName='{{SwiperList[2].Name}}' 
+                data-bookImg='{{SwiperList[2].ImageUrl}}'
+                data-bookContent='{{SwiperList[2].Description}}' >
+                    <l-card type="primary" 
+                    full="{{true}}"
+                    image="{{SwiperList[2].ImageUrl}}"
+                    title="{{SwiperList[2].Name}}">
+                        <view class="content">
+                        {{tools.sub(SwiperList[2].Description)}}
+                        </view>
+                    </l-card>
+                </view>
+    </view>
+    <view class='swiperBanner'>
+                <view catchtap="readBook"data-bookName='{{SwiperList[3].Name}}' 
+                data-bookImg='{{SwiperList[3].ImageUrl}}'
+                data-bookContent='{{SwiperList[3].Description}}' >
+                    <l-card type="primary" 
+                    full="{{true}}"
+                    position="right"
+                    image="{{SwiperList[3].ImageUrl}}"
+                    title="{{SwiperList[3].Name}}">
+                        <view class="content">
+                        {{tools.sub(SwiperList[3].Description)}}
+                        </view>
+                    </l-card>
+                </view>
     </view>
 </view>
 
