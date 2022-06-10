@@ -1,1 +1,21 @@
-<l-search-bar placeholder="搜索" bg-color="#f6f6f6" shape="circle" />
+<wxs src="../../wxs/subhelper.wxs" module="tools"/>
+
+<view class="searchBar">
+    <l-search-bar placeholder="搜索" cancel-text="搜索" bind:linchange="handleInput" />
+</view>
+
+<view class="searchContent"
+wx:for="{{SearchList}}">
+    <view catchtap="readBook"data-bookName='{{item.Name}}' 
+        data-bookImg='{{item.ImageUrl}}'
+        data-bookContent='{{item.Description}}' >
+            <l-card type="primary" 
+                full="{{true}}"
+                image="{{item.ImageUrl}}"
+                title="{{item.Name}}">
+                    <view class="content">
+                        {{tools.sub(item.Description)}}
+                    </view>
+            </l-card>
+    </view>
+</view>

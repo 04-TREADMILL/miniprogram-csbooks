@@ -1,0 +1,7 @@
+page{
+    background-color: antiquewhite;
+}
+
+.searchContent{
+    margin-top: 30rpx;
+}
