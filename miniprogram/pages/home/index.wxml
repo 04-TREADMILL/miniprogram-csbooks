@@ -2,11 +2,11 @@
 <wxs src="../../wxs/subhelper.wxs" module="tools"/>
 
 <view class="homePage">
-<view class="search">
-    <navigator target="self" url="/pages/search/index" open-type="navigate">
-        <l-search-bar placeholder="搜索" bg-color="#eeeeee" shape="circle" cancel-text="搜索"/>
-    </navigator>
-</view>
+    <view class="search">
+        <navigator target="self" url="/pages/search/index" open-type="navigate">
+            <l-search-bar placeholder="搜索" bg-color="#eeeeee" shape="circle" cancel-text="搜索"/>
+        </navigator>
+    </view>
 
     <view class='card_1'>
                 <view catchtap="readBook"data-bookName='{{SwiperList[0].Name}}' 
