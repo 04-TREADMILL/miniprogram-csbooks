@@ -1,0 +1,48 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(19, 16, 16);
+  font-size: medium;
+  font-style: inherit;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.button {
+  margin-top: 40px;
+  font-size: large;
+  width: 30px;
+}
+
+.anonymous-avatar {
+  margin-top: 70px;
+  text-align: center;
+}
+
+.list {
+  margin-left: 20px;
+  height: 50px;
+}
+
+.list-icon {
+  width: 20rpx;
+  height: 40rpx;
+}
+
+.list-text {
+  font-size: 15px;
+  font-style: initial;
+  margin-left: 10px;
+}
+
+.content {
+  margin-top: 20px;
+}

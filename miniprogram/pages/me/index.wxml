@@ -1,11 +1,23 @@
 <block wx:if="{{!hasUserInfo}}">
   <block wx:if="{{!hasSessionKey}}">
-    <l-button bind:lintap="login" class="text-center">登陆</l-button>
+    <l-icon name="user" size="200" l-class="anonymous-avatar"></l-icon>
+    <l-button l-class="button" bind:lintap="login" class="text-center" width="300">登陆</l-button>
   </block>
   <block wx:else>
-    <l-button bind:lintap="upload" class="text-center">上传</l-button>
+    <l-button l-class="button" bind:lintap="upload" class="text-center" width="300">上传</l-button>
   </block>
 </block>
+
 <block wx:else>
-  <l-avatar text="{{userInfo.nickName}}" placement="bottom" src="{{userInfo.avatarUrl}}" />
+
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+
+  <view class="content">
+    <l-list title="评论" image="/icons/me/comment.png" l-image-class="list-icon" l-class="list" l-content-class="list-text" bind:lintap="click_comment"> </l-list>
+    <l-list title="关于" image="/icons/me/about.png" l-image-class="list-icon" l-class="list" l-content-class="list-text" bind:lintap="click_about"> </l-list>
+  </view>
+
 </block>
