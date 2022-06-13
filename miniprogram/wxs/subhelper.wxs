@@ -1,6 +1,8 @@
-var sub = function(val){
-    if(val.length == 0 || val == undefined) return;
-    if(val.length > 80) return val.substring(0, 77) + "...";
+var sub = function (val) {
+  if (val) {
+    if (val.length == 0 || val == undefined) return;
+    if (val.length > 80) return val.substring(0, 77) + "...";
     else return val;
+  }
 }
 module.exports.sub = sub;

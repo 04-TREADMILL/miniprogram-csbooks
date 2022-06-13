@@ -9,6 +9,6 @@ text{
 }
 
 .head{
-  margin-top:400rpx;
+  margin-top:300rpx;
 }
 

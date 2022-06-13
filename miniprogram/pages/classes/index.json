@@ -1,6 +1,8 @@
 {
   "usingComponents": {
+    "l-search-bar":"../../miniprogram_npm/lin-ui/search-bar/index",
     "l-tabpanel":"../../miniprogram_npm/lin-ui/tabpanel/index",
     "l-tabs":"../../miniprogram_npm/lin-ui/tabs/index"
-  }
+  },
+  "navigationBarTitleText": "分类"
 }

@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    "l-card":"../../miniprogram_npm/lin-ui/card/index"
-  }
+    "l-card":"../../miniprogram_npm/lin-ui/card/index",
+    "l-tag":"../../miniprogram_npm/lin-ui/tag/index",
+    "l-search-bar":"../../miniprogram_npm/lin-ui/search-bar/index"
+  },
+  "navigationBarTitleText": "首页"
 }

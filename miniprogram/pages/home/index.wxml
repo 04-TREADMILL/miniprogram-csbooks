@@ -2,7 +2,13 @@
 <wxs src="../../wxs/subhelper.wxs" module="tools"/>
 
 <view class="homePage">
-    <view class='swiperBanner'>
+    <view class="search">
+        <navigator target="self" url="/pages/search/index" open-type="navigate">
+            <l-search-bar placeholder="搜索" bg-color="#eeeeee" shape="circle" cancel-text="搜索"/>
+        </navigator>
+    </view>
+
+    <view class='card_1'>
                 <view catchtap="readBook"data-bookName='{{SwiperList[0].Name}}' 
                 data-bookImg='{{SwiperList[0].ImageUrl}}'
                 data-bookContent='{{SwiperList[0].Description}}' >
@@ -16,7 +22,7 @@
                     </l-card>
                 </view>
     </view>
-    <view class='swiperBanner'>
+    <view class='card_2'>
                 <view catchtap="readBook"data-bookName='{{SwiperList[1].Name}}' 
                 data-bookImg='{{SwiperList[1].ImageUrl}}'
                 data-bookContent='{{SwiperList[1].Description}}' >
@@ -31,7 +37,7 @@
                     </l-card>
                 </view>
     </view>
-    <view class='swiperBanner'>
+    <view class='card_3'>
                 <view catchtap="readBook"data-bookName='{{SwiperList[2].Name}}' 
                 data-bookImg='{{SwiperList[2].ImageUrl}}'
                 data-bookContent='{{SwiperList[2].Description}}' >
@@ -45,7 +51,7 @@
                     </l-card>
                 </view>
     </view>
-    <view class='swiperBanner'>
+    <view class='card_4'>
                 <view catchtap="readBook"data-bookName='{{SwiperList[3].Name}}' 
                 data-bookImg='{{SwiperList[3].ImageUrl}}'
                 data-bookContent='{{SwiperList[3].Description}}' >

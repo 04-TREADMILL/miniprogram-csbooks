@@ -4,7 +4,51 @@ Page({
    * 页面的初始数据
    */
   data: {
+    SearchList:[],
+  },
 
+  handleInput(e){
+    const {value} = e.detail;
+    if(!value.trim()){
+      return;
+    }
+    this.queryRes(value);
+  },
+
+  queryRes(value){
+      wx.cloud
+          .callContainer({
+          config: {
+          env: "prod-8gt4mz04386985ef",
+          },
+          path: "/api/book",
+          header: {
+          "X-WX-SERVICE": "golang-6i3q",
+          },
+          method: "POST",
+          data: {
+          action: "fuzzy",
+          hint: value,
+          },
+      })
+      .then((resp)=>{
+          this.setData({
+            SearchList : resp.data.data
+          })
+      })
+      .catch((e) => {
+          console.log(e);
+      });
+  },
+
+  readBook: function(e){
+    console.log(e.currentTarget.dataset);
+    var bookname = e.currentTarget.dataset.bookname;
+    var bookdesc = e.currentTarget.dataset.bookcontent;
+    var bookimg  = e.currentTarget.dataset.bookimg;
+        wx.navigateTo({
+          url:"../detail/detail?title=" + bookname + '&con=' + bookdesc +'&img=' + bookimg
+        });
   },
 
   /**
