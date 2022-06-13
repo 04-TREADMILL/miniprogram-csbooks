@@ -14,22 +14,23 @@
   height: 128rpx;
   margin: 20rpx;
   border-radius: 50%;
+  margin-top: 60rpx;
 }
 
 .button {
-  margin-top: 40px;
+  margin-top: 70rpx;
   font-size: large;
   width: 30px;
 }
 
 .anonymous-avatar {
-  margin-top: 70px;
+  margin-top: 200rpx;
   text-align: center;
 }
 
 .list {
-  margin-left: 20px;
-  height: 50px;
+  margin-left: 40rpx;
+  height: 50rpx;
 }
 
 .list-icon {
@@ -38,11 +39,11 @@
 }
 
 .list-text {
-  font-size: 15px;
+  font-size: 40rpx;
   font-style: initial;
-  margin-left: 10px;
+  margin-left: 20rpx;
 }
 
 .content {
-  margin-top: 20px;
+  margin-top: 60rpx;
 }

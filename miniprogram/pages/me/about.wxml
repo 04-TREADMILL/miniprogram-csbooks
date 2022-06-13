@@ -1,3 +1,3 @@
 <!--pages/me/about.wxml-->
-  <text class="head">本小程序为2022上半年计算机网络课程小组作业。</text>
-  <text>小组成员有杨昊锦，丁宇辰，凌毓辰，胡睿，马宇森。</text>
+<text class="head">本小程序为2022上半年计算机网络课程小组作业。</text>
+<text>小组成员有杨昊锦，丁宇辰，凌毓辰，胡睿，马宇森。</text>

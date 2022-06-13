@@ -279,5 +279,11 @@ Page({
     wx.navigateTo({
       url: '/pages/me/about',
     })
+  },
+
+  click_subscribed() {
+    wx.navigateTo({
+      url: '/pages/me/subscribed',
+    })
   }
 })

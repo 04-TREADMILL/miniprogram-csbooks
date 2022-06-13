@@ -1,13 +1,14 @@
 /* pages/me/about.wxss */
 text{
-  margin-left: 20px;
-  margin-right: 20px;
-  font-size: 20px;
-  text-indent: 1.5em;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  font-size: 40rpx;
   font-style: initial;
+  text-align: center;
+  line-height: 70rpx;
 }
 
 .head{
-  margin-top: 100px;
+  margin-top:400rpx;
 }
 

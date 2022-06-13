@@ -16,6 +16,7 @@
   </view>
 
   <view class="content">
+    <l-list title="收藏" image="/icons/me/subscribed.png" l-image-class="list-icon" l-class="list" l-content-class="list-text" bind:lintap="click_subscribed"> </l-list>
     <l-list title="评论" image="/icons/me/comment.png" l-image-class="list-icon" l-class="list" l-content-class="list-text" bind:lintap="click_comment"> </l-list>
     <l-list title="关于" image="/icons/me/about.png" l-image-class="list-icon" l-class="list" l-content-class="list-text" bind:lintap="click_about"> </l-list>
   </view>
