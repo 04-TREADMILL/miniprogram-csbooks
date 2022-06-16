@@ -14,6 +14,10 @@ App({
       });
     }
 
-    this.globalData = {};
+    this.globalData = {
+     nickName: "",
+     avatarUrl: "",
+     openid: ""
+    };
   }
 });

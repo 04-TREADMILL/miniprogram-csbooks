@@ -11,7 +11,7 @@ Page({
 
 
     readBook: function(e){
-        console.log(e.currentTarget.dataset);
+        // console.log(e.currentTarget.dataset);
         var bookname = e.currentTarget.dataset.bookname;
         var bookdesc = e.currentTarget.dataset.bookcontent;
         var bookimg  = e.currentTarget.dataset.bookimg;

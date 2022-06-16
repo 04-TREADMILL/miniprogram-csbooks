@@ -23,12 +23,13 @@ Page({
   },
   
   readBook: function(e){
-    console.log(e.currentTarget.dataset);
+
     var bookname = e.currentTarget.dataset.bookname;
     var bookdesc = e.currentTarget.dataset.bookcontent;
     var bookimg  = e.currentTarget.dataset.bookimg;
+    var bookid   = e.currentTarget.dataset.bookid;
         wx.navigateTo({
-          url:"../detail/detail?title=" + bookname + '&con=' + bookdesc +'&img=' + bookimg
+          url:"../detail/detail?title=" + bookname + '&con=' + bookdesc +'&img=' + bookimg + '&id=' + bookid
         });
   },
   
@@ -37,7 +38,7 @@ Page({
      */
   
     onLoad(options) {
-
+      var init = [];
       wx.cloud
       .callContainer({
         config: {
@@ -55,7 +56,7 @@ Page({
       })
       .then((resp) => {
         var t = resp.data.data;
-        console.log(t);
+  
         this.setData({
           Length_of_cate: t.length,
           Categories: t
@@ -92,25 +93,46 @@ Page({
                 this.setData({
                   Content: Con
                 })
-                console.log(Con);          
               })
               .catch((e) => {
-                console.log(e);
+  
               });
       }
               // console.log("this.data");
-              // console.log(this.data);
-        
-          console.log(this.data);
-  },
+              wx.cloud
+              .callContainer({
+                config: {
+                  env: "prod-8gt4mz04386985ef",
+                },
+                path: "/api/book",
+                header: {
+                  "X-WX-SERVICE": "golang-6i3q",
+                },
+                method: "POST",
+                data: {
+                  action: "category",
+                  hint: "0",
+                },
+              })
+              .then((resp) => {
+                var Datas = resp.data.data;
+                var temp  = this.data.Lists;
+                console.log(resp);
+                this.setData({
+                  types: temp[0],
+                })
+              })
+              .catch((e) => {
   
+              });
+  
+      
+  },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-        this.setData({
-            types: this.data.Content[0]
-          });
+      console.log(this.data);
     },
   
     /**

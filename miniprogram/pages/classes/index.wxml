@@ -19,7 +19,8 @@
            wx:for='{{types}}' wx:key='' catchtap='readBook' 
            data-bookName='{{item.Name}}' 
            data-bookImg='{{item.ImageUrl}}'
-           data-bookContent='{{item.Description}}' >
+           data-bookContent='{{item.Description}}'
+           data-bookid='{{item.Id}}' >
                 <view class='type' >
                     <view class='img'>
                     <image src = '{{item.ImageUrl}}' style="width:50px" mode="widthFix">

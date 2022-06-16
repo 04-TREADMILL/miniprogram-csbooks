@@ -25,12 +25,50 @@ class = "text-center"
 
 <view class = "text-center solid-top">评分</view>
 <l-rate class = "rate solids-bottom" score="3"></l-rate>
-<view>
-   <l-textarea  placeholder="说说你的看法..."  />
-</view>
 
-<l-loadmore show="{{true}}" class = "bottom">
-  <view slot="content">
-      Read more
+
+<view class="icon-box">
+  <view class="icon-box-ctn">
+      <view class="icon-box-title">收藏</view>
+    </view>  
+  <view class="icon-small-wrp">
+      <icon class="icon-small" type="success_no_circle" size="23"></icon>
+    </view>
   </view>
-</l-loadmore>
+
+<!-- <view class = "comment">
+<Comment proID = '{{book_id}}'></Comment> 
+</view> -->
+
+<view>
+  <view class='top'>
+            <view bindtap='onTabsItemTap' data-index='{{index}}' class="top-item">
+                <text class="{{currentTabsIndex==index?'on':''}}">精彩评论</text>
+            </view>
+    </view>
+  <view class='newsBox'>
+    <block  wx:for="{{talks}}"  wx:for-index="talks" wx:key="talks">
+      <view class='container-content'>
+          <view class='user-info'>
+            <image class='user-head' src='{{item.avatarUrl}}' mode='aspectFill'></image>
+            <view class='user-name-time'>
+              <view class='user-name'>{{item.UserId}}</view>
+              <view class='user-publish-time'>{{item.CreateAt}}</view>
+            </view>
+            </view>
+            <view class='content'>
+            <!-- 显示文本 -->
+              <view style="display:flex;flex-direction:column">
+                <text class='content-text'>{{item.Comment}}</text>
+              </view>
+             </view>
+            </view>
+    </block>
+    </view>
+
+<view class="talk">
+    <input class='input' type='text' value='' confirm-type='send' placeholder='发表评论！' bindinput='talkInput' value='{{inputValue}}'></input>
+    <button class="mini-btn" type="primary" size="mini" bindtap="submit">确定</button>
+    <!-- <button  class="confirm"  bindtap="submit">确定</button> -->
+</view>
+</view>

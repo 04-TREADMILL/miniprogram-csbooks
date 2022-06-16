@@ -1,3 +1,5 @@
+
+const app = getApp();
 Page({
 
   /**
@@ -208,6 +210,7 @@ Page({
         var openId
         try {
           openId = wx.getStorageSync("openid")
+          app.globalData.openid = openId;
         } catch (e) {
           console.log(e)
           return
@@ -217,10 +220,12 @@ Page({
         const {
           userInfo
         } = _this.data.userInfo
-
-        console.log(userInfo)
-
+   
+  
+        app.globalData.nickName = userInfo.nickName;
+        app.globalData.avatarUrl = userInfo.avatarUrl;
         // POST /api/loginSet
+        
         wx.cloud
           .callContainer({
             config: {
@@ -238,6 +243,7 @@ Page({
             },
           }).then(resp => {
             console.log(resp)
+
             if (resp.data.code != 0) {
               console.log(resp.data.errorMsg)
               return
