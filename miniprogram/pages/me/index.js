@@ -146,7 +146,6 @@ Page({
                           _this.setData({
                             userInfo: res.userInfo,
                             hasUserInfo: true,
-                            hasSessionKey: true
                           })
 
                           // store userInfo
@@ -212,7 +211,6 @@ Page({
                   fail: res => {
                     _this.setData({
                       hasUserInfo: false,
-                      hasSessionKey: true
                     })
                   }
                 })
