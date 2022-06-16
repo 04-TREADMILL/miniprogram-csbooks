@@ -1,4 +1,3 @@
-
 const app = getApp();
 Page({
 
@@ -8,7 +7,6 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    hasSessionKey: false
   },
 
   /**
@@ -19,28 +17,32 @@ Page({
     wx.checkSession({
       success: res => {
 
-        // assume hasSessionId -> hasUserInfo
+        // assume success -> has userinfo and openid
         var userInfo
+        var openid
         try {
           userInfo = wx.getStorageSync("userinfo")
+          app.globalData.nickName = userInfo.nickName
+          app.globalData.avatarUrl = userInfo.avatarUrl
+          openid = wx.getStorageSync("openid")
+          app.globalData.openid = openid
         } catch (e) {
           console.log(e)
           return
         }
 
-        //set userInfo, hasUserInfo, hasSessionKey
+        // set userInfo, hasUserInfo
         _this.setData({
           userInfo: userInfo,
           hasUserInfo: true,
-          hasSessionKey: true
         })
       },
+
       fail: res => {
-        //set userInfo, hasUserInfo, hasSessionKey
+        // set userInfo, hasUserInfo
         _this.setData({
           userInfo: {},
           hasUserInfo: false,
-          hasSessionKey: false
         })
       }
     })
@@ -103,7 +105,6 @@ Page({
         console.log(res)
 
         // POST /api/loginInit
-        // put code, get openId
         if (res.code) {
           wx.cloud
             .callContainer({
@@ -125,13 +126,13 @@ Page({
                 // store openid
                 try {
                   wx.setStorageSync("openid", resp.data.data)
+                  app.globalData.openid = resp.data.data;
                 } catch (e) {
                   console.log(e)
                   return
                 }
 
                 // get userInfo
-                // 异步 - 引入上传操作
                 wx.showModal({
                   title: '温馨提示',
                   content: '亲，授权微信登录后才能正常使用小程序功能',
@@ -151,10 +152,45 @@ Page({
                           // store userInfo
                           try {
                             wx.setStorageSync("userinfo", res.userInfo)
+                            app.globalData.nickName = res.userInfo.nickName;
+                            app.globalData.avatarUrl = res.userInfo.avatarUrl;
                           } catch (e) {
                             console.log(e)
                             return
                           }
+
+                          // POST /api/loginSet
+                          wx.cloud
+                            .callContainer({
+                              config: {
+                                env: "prod-8gt4mz04386985ef",
+                              },
+                              path: "/api/loginSet",
+                              header: {
+                                "X-WX-SERVICE": "golang-6i3q",
+                              },
+                              method: "POST",
+                              data: {
+                                openid: app.globalData.openid,
+                                nickname: app.globalData.nickName,
+                                avatar: app.globalData.avatarUrl
+                              },
+                            }).then(resp => {
+                              console.log(resp)
+
+                              if (resp.data.code != 0) {
+                                console.log(resp.data.errorMsg)
+                                return
+                              } else {
+                                _this.setData({
+                                  hasUserInfo: true
+                                })
+                              }
+                            }).catch(e => {
+                              console.log(e)
+                              return
+                            })
+
                         },
                         fail: res => {
                           console.log(res)
@@ -196,84 +232,6 @@ Page({
       }
     })
   },
-
-
-  upload() {
-    var _this = this
-    wx.checkSession({
-      success: res => {
-        // session_key 未过期，并且在本生命周期一直有效
-        console.log("valid")
-        console.log(res)
-
-        // get openid
-        var openId
-        try {
-          openId = wx.getStorageSync("openid")
-          app.globalData.openid = openId;
-        } catch (e) {
-          console.log(e)
-          return
-        }
-
-        // get userinfo
-        const {
-          userInfo
-        } = _this.data.userInfo
-   
-  
-        app.globalData.nickName = userInfo.nickName;
-        app.globalData.avatarUrl = userInfo.avatarUrl;
-        // POST /api/loginSet
-        
-        wx.cloud
-          .callContainer({
-            config: {
-              env: "prod-8gt4mz04386985ef",
-            },
-            path: "/api/loginSet",
-            header: {
-              "X-WX-SERVICE": "golang-6i3q",
-            },
-            method: "POST",
-            data: {
-              openid: openId,
-              nickname: userInfo.nickName,
-              avatar: userInfo.avatarUrl
-            },
-          }).then(resp => {
-            console.log(resp)
-
-            if (resp.data.code != 0) {
-              console.log(resp.data.errorMsg)
-              return
-            } else {
-              _this.setData({
-                hasUserInfo: true
-              })
-            }
-          }).catch(e => {
-            console.log(e)
-            return
-          })
-      },
-
-      fail: res => {
-        // session_key 已经失效，需要重新执行登录流程
-        console.log("invalid")
-        console.log(res)
-
-        _this.setData({
-          userInfo: {},
-          hasUserInfo: false,
-          hasSessionKey: false
-        })
-
-        return
-      }
-    })
-  },
-
 
   click_comment() {
     wx.navigateTo({

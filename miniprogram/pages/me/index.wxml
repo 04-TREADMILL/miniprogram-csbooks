@@ -1,11 +1,6 @@
 <block wx:if="{{!hasUserInfo}}">
-  <block wx:if="{{!hasSessionKey}}">
-    <l-icon name="user" size="200" l-class="anonymous-avatar"></l-icon>
-    <l-button l-class="button" bind:lintap="login" class="text-center" width="300">登陆</l-button>
-  </block>
-  <block wx:else>
-    <l-button l-class="button" bind:lintap="upload" class="text-center" width="300">上传</l-button>
-  </block>
+  <l-icon name="user" size="200" l-class="anonymous-avatar"></l-icon>
+  <l-button l-class="button" bind:lintap="login" class="text-center" width="300">登陆</l-button>
 </block>
 
 <block wx:else>
