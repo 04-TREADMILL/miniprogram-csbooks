@@ -11,7 +11,8 @@
     <view class='card_1'>
                 <view catchtap="readBook"data-bookName='{{SwiperList[0].Name}}' 
                 data-bookImg='{{SwiperList[0].ImageUrl}}'
-                data-bookContent='{{SwiperList[0].Description}}' >
+                data-bookContent='{{SwiperList[0].Description}}' 
+                data-bookId='{{SwiperList[0].Id}}'>
                     <l-card type="primary" 
                     full="{{true}}"
                     image="{{SwiperList[0].ImageUrl}}"
@@ -25,7 +26,8 @@
     <view class='card_2'>
                 <view catchtap="readBook"data-bookName='{{SwiperList[1].Name}}' 
                 data-bookImg='{{SwiperList[1].ImageUrl}}'
-                data-bookContent='{{SwiperList[1].Description}}' >
+                data-bookContent='{{SwiperList[1].Description}}'
+                data-bookId='{{SwiperList[1].Id}}' >
                     <l-card type="primary" 
                     position="right"
                     full="{{true}}"
@@ -40,7 +42,8 @@
     <view class='card_3'>
                 <view catchtap="readBook"data-bookName='{{SwiperList[2].Name}}' 
                 data-bookImg='{{SwiperList[2].ImageUrl}}'
-                data-bookContent='{{SwiperList[2].Description}}' >
+                data-bookContent='{{SwiperList[2].Description}}'
+                data-bookId='{{SwiperList[2].Id}}' >
                     <l-card type="primary" 
                     full="{{true}}"
                     image="{{SwiperList[2].ImageUrl}}"
