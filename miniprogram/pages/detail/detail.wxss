@@ -105,6 +105,11 @@ margin-left: 80rpx;
     color: #666;
     padding: 0 20rpx;
 }
+.container-content{
+  border: 1px solid #ccc;
+  padding: 1px;
+  overflow: hidden;
+}
 .talk{
   display: flex;
   flex-direction: row;

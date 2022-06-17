@@ -121,12 +121,35 @@ Page({
           console.log(resp.data.data[0].Comment);
           var arr =resp.data.data;
 
-          for(let i = arr.length - 1,j = 0 ; i>=0 ;i--,j++){
+          for(let j = 0 ; j < arr.length; j++){
             console.log("Comment")
+            var jj = arr.length - 1 - j;
             console.log(arr[j])
-            var talks = "talks[" + j + "]";
+            var talks = "talks[" + jj + "]";
+            var temp_id = arr[j].UserId;
+            //获取头像和NickName
+            wx.cloud
+            .callContainer({
+              config: {
+                env: "prod-8gt4mz04386985ef",
+              },
+              path: "/api/loginGet",
+              header: {
+                "X-WX-SERVICE": "golang-6i3q",
+              },
+              method: "POST",
+              data: {
+                openid: temp_id
+              },
+            })
+            .then((resp) => {
+              console.log(resp.data);
+              arr[j].ava = resp.data.avatarUrl
+              arr[j].nin = resp.data.NicnName
+            })
+
             this.setData({
-              [talks]: arr[i],
+              [talks]: arr[j],
             })
           }
           console.log(this.data.talks);
@@ -191,39 +214,62 @@ Page({
           console.log(resp);
 
           wx.cloud
-          .callContainer({
-            config: {
-              env: "prod-8gt4mz04386985ef",
-            },
-            path: "/api/commentGet",
-            header: {
-              "X-WX-SERVICE": "golang-6i3q",
-            },
-            method: "POST",
-            data: {
-              action: "book",
-              hint: this.data.book_id
-            },
-          })
-          .then((resp) => {
-            console.log("更新评论")
-            console.log(resp.data.data[0].Comment);
-            var arr =resp.data.data;
-  
-            for(let i = arr.length - 1,j = 0 ; i>=0 ;i--,j++){
-              console.log("Comment")
-              console.log(arr[j])
-              var talks = "talks[" + j + "]";
-              this.setData({
-                [talks]: arr[i],
-              })
-            }
-            console.log(this.data.talks);
-  
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+        .callContainer({
+          config: {
+            env: "prod-8gt4mz04386985ef",
+          },
+          path: "/api/commentGet",
+          header: {
+            "X-WX-SERVICE": "golang-6i3q",
+          },
+          method: "POST",
+          data: {
+            action: "book",
+            hint: this.data.book_id
+          },
+        })
+        .then((resp) => {
+          console.log("获取评论")
+          console.log(resp.data.data[0].Comment);
+          var arr =resp.data.data;
+
+          for(let j = 0 ; j < arr.length; j++){
+            console.log("Comment")
+            var jj = arr.length - 1 - j;
+            console.log(arr[j])
+            var talks = "talks[" + jj + "]";
+            var temp_id = arr[j].UserId;
+            //获取头像和NickName
+            wx.cloud
+            .callContainer({
+              config: {
+                env: "prod-8gt4mz04386985ef",
+              },
+              path: "/api/loginGet",
+              header: {
+                "X-WX-SERVICE": "golang-6i3q",
+              },
+              method: "POST",
+              data: {
+                openid: temp_id
+              },
+            })
+            .then((resp) => {
+              console.log(resp.data);
+              arr[j].ava = resp.data.avatarUrl
+              arr[j].nin = resp.data.NicnName
+            })
+
+            this.setData({
+              [talks]: arr[j],
+            })
+          }
+          console.log(this.data.talks);
+
+        })
+        .catch((e) => {
+          console.log(e);
+        });
      
 
 
