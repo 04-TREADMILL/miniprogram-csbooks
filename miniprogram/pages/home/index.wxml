@@ -57,7 +57,8 @@
     <view class='card_4'>
                 <view catchtap="readBook"data-bookName='{{SwiperList[3].Name}}' 
                 data-bookImg='{{SwiperList[3].ImageUrl}}'
-                data-bookContent='{{SwiperList[3].Description}}' >
+                data-bookContent='{{SwiperList[3].Description}}' 
+                data-bookId='{{SwiperList[3].Id}}'>
                     <l-card type="primary" 
                     full="{{true}}"
                     position="right"
