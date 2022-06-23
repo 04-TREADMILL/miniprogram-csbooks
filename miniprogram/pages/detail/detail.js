@@ -31,7 +31,7 @@ Page({
       _openid:"",
       talks: [],
       talk: "",
-
+      collection:"cuIcon-favor",
   },
 
    /**
@@ -42,7 +42,53 @@ Page({
    */
   handleCollect() {
 
-    
+      var that = this
+      const db = wx.cloud.database()
+      if(!that.data.avatarUrl){//判断是否获取到用户信息
+        wx.showToast({
+          title: '请先获取用户信息！',
+          icon: "none"
+        })
+    wx.getUserProfile({//获得微信用户信息
+      desc: '用于完善资料',
+      success: function (res) {
+        app.globalData.nickName = res.userInfo.nickName;
+        app.globalData.avatarUrl = res.userInfo.avatarUrl;
+      }
+     })
+     that.setData({//获取用户信息
+      nickName:app.globalData.nickName,
+      avatarUrl:app.globalData.avatarUrl
+    })
+    }else{
+      if(this.data.collection == "cuIcon-favor"){
+        wx.cloud
+        .callContainer({
+          config: {
+            env: "prod-8gt4mz04386985ef",
+          },
+          path: "/api/collectionSet",
+          header: {
+            "X-WX-SERVICE": "golang-6i3q",
+          },
+          method: "POST",
+          data: {
+            userid: this.data._openid,
+            bookid: this.data.book_id,
+          },
+        })
+        .then((resp) => {
+          console.log(resp);
+            this.setData({
+              collection: "cuIcon-favorfill",
+            })
+        })
+        .catch((e) => {
+          console.log(e);
+        })
+      }
+      
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -158,11 +204,38 @@ Page({
         .catch((e) => {
           console.log(e);
         });
-   
 
- 
-
-
+        wx.cloud
+        .callContainer({
+          config: {
+            env: "prod-8gt4mz04386985ef",
+          },
+          path: "/api/collectionGet",
+          header: {
+            "X-WX-SERVICE": "golang-6i3q",
+          },
+          method: "POST",
+          data: {
+            action: "book",
+            hint: this.data.book_id
+          },
+        })
+        .then((resp) => {
+          console.log("Collection");
+          var arr = resp.data.data;
+          console.log(arr);
+          console.log(this.data._openid)
+          for(let i = 0; i < arr.length ;i++){
+            if(this.data._openid == arr[i].UserId){
+              this.setData({
+                collection : "cuIcon-favorfill",
+              })
+            }
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
   },
   talkInput: function (e) {
   

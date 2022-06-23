@@ -21,16 +21,19 @@ class = "text-center"
             <view class="context Desc text-left ">
                 {{" "+content}}
             </view>
-        </view>
+</view>
 
-<view class = "text-center solid-top">评分</view>
-<l-rate class = "rate solids-bottom" score="3"></l-rate>
+<view class = "text-center solid-top">
+  <view>收藏</view>
+  <view class="{{collection}}" bindtap="handleCollect"></view>
+</view>
+
+    
+
 
 
 <view class="icon-box">
-  <view class="icon-box-ctn">
-      <view class="icon-box-title">收藏</view>
-    </view>  
+
   <view class="icon-small-wrp">
       <icon class="icon-small" type="success_no_circle" size="23"></icon>
     </view>
