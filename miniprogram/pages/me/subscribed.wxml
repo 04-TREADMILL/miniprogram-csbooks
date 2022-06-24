@@ -1,2 +1,21 @@
 <!--pages/me/subscribed.wxml-->
-<text>pages/me/subscribed.wxml</text>
+<wxs src="../../wxs/subhelper.wxs" module="tools"/>
+
+<view>
+  <view wx:for="{{collection}}">
+    <view catchtap="readBook" data-bookName='{{item.Name}}' 
+        data-bookImg='{{item.ImageUrl}}'
+        data-bookContent='{{item.Description}}' 
+        data-bookId='{{item.Id}}'>
+          <l-card type="primary" 
+              full="{{true}}"
+              position="left"
+              image="{{item.ImageUrl}}"
+              title="{{item.Name}}">
+                <view class="content">
+                  {{tools.sub(item.Description)}}
+                </view>
+          </l-card>
+    </view>
+  </view>   
+</view>
