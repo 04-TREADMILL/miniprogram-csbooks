@@ -54,7 +54,9 @@ Page({
           length: t.length
         });
         //通过bookid获取书籍具体信息
-        this.getbook_comments();
+        for (var i=0; i < this.data.length; i++) {
+          this.getbook_comments(i);
+        }
       })
       .catch((e) => {
       });
@@ -63,47 +65,50 @@ Page({
   },
 
   //通过bookid获取书籍具体信息
-  getbook_comments() {
-    for (var j = 0; j < this.data.length; j++) {
-      var BookId = this.data.comments[j].BookId;
-      var Comment = this.data.comments[j].Comment;
-      console.log(Comment);
-      var ID = this.data.comments[j].ID;
-      wx.cloud
-        .callContainer({
-          config: {
-            env: "prod-8gt4mz04386985ef",
-          },
-          path: "/api/book",
-          header: {
-            "X-WX-SERVICE": "golang-6i3q",
-          },
-          method: "POST",
-          data: {
-            action: "id",
-            hint: "" + BookId,
-          },
-        })
-        .then((resp) => {
-          console.log(resp);
-          
-          var book_comment;
-          book_comment = resp.data.data;
-          book_comment.Comment = Comment;
-          book_comment.CommentId = ID;
-          book_comment.BookId = BookId;
+  getbook_comments(j) {
+    var BookId;
+    var Comment;
+    var ID;
 
-          console.log(Comment);
-          var temp = this.data.book_comments;
-          temp.push(book_comment);
-          this.setData({
-            book_comments: temp,
-          })
+    BookId = this.data.comments[j].BookId;
+    Comment = this.data.comments[j].Comment;
+    ID = this.data.comments[j].ID;
+    wx.cloud
+      .callContainer({
+        config: {
+          env: "prod-8gt4mz04386985ef",
+        },
+        path: "/api/book",
+        header: {
+          "X-WX-SERVICE": "golang-6i3q",
+        },
+        method: "POST",
+        data: {
+          action: "id",
+          hint: "" + BookId,
+        },
+      })
+      .then((resp) => {
+        console.log(resp);
+        var book_comment;
+        book_comment = resp.data.data;
+        book_comment.Comment = Comment;
+        book_comment.CommentId = ID;
+        book_comment.BookId = BookId;
+
+        console.log(Comment);
+        console.log(ID);
+
+        var temp = this.data.book_comments;
+        temp.push(book_comment);
+        this.setData({
+          book_comments: temp,
         })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
   },
 
   /**
