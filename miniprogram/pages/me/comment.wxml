@@ -2,7 +2,7 @@
 <wxs src="../../wxs/subhelper.wxs" module="tools" />
 
 <scroll-view scroll-y="true">
-  <view wx:for='{{book_comments}}' wx:key='' data-bookName='{{item.Name}}' data-bookImg='{{item.ImageUrl}}' data-bookComment='{{item.Comment}}'>
+  <view wx:for='{{book_comments}}' wx:key="ID" data-bookName='{{item.Name}}' data-bookImg='{{item.ImageUrl}}' data-bookComment='{{item.Comment}}'>
     <l-card type="primary" full="{{true}}" image="{{data-bookImg}}" title="{{data-bookName}}">
       <view>
         {{tools.sub(data-bookComment)}}
