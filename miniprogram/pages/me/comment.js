@@ -96,9 +96,6 @@ Page({
         book_comment.CommentId = ID;
         book_comment.BookId = BookId;
 
-        console.log(Comment);
-        console.log(ID);
-
         var temp = this.data.book_comments;
         temp.push(book_comment);
         this.setData({
