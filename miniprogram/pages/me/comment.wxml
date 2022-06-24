@@ -2,11 +2,13 @@
 <wxs src="../../wxs/subhelper.wxs" module="tools" />
 
 <scroll-view scroll-y="true">
-  <view wx:for='{{book_comments}}' wx:key="ID" data-bookName='{{item.Name}}' data-bookImg='{{item.ImageUrl}}' data-bookComment='{{item.Comment}}'>
-    <l-card type="primary" full="{{true}}" image="{{data-bookImg}}" title="{{data-bookName}}">
-      <view>
-        {{tools.sub(data-bookComment)}}
+
+  <view wx:for='{{book_comments}}' wx:key="CommentId" data-bookName='{{item.Name}}' data-bookImg='{{item.ImageUrl}}' data-bookComment='{{item.Comment}}'>
+    <l-card type="primary" full="{{true}}" image="{{item.ImageUrl}}" title="{{item.Name}}">
+      <view class="content">
+        {{tools.sub(item.Comment)}}
       </view>
     </l-card>
   </view>
+
 </scroll-view>

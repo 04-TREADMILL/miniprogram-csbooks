@@ -8,9 +8,7 @@ Page({
     userID: 0,
     comments: [],
     book_comments: [],
-    length: 0,
-    comment_temp: [],
-    temp: ""
+    length: 0
   },
 
   count(o) {
@@ -66,18 +64,11 @@ Page({
 
   //通过bookid获取书籍具体信息
   getbook_comments() {
-    console.log("Position 1");
-    console.log("Position 2");
-    console.log("length now is");
-    console.log(this.length);
-    for (var j = 0; j < this.length; j++) {
-      console.log("Position 3");
-      var BookId = this.comments[j].BookId;
-      var Comment = this.comments[j].Comment;
-      this.setData({
-        temp: Comment
-      })
-      var ID = this.comments[j].ID;
+    for (var j = 0; j < this.data.length; j++) {
+      var BookId = this.data.comments[j].BookId;
+      var Comment = this.data.comments[j].Comment;
+      console.log(Comment);
+      var ID = this.data.comments[j].ID;
       wx.cloud
         .callContainer({
           config: {
@@ -90,28 +81,29 @@ Page({
           method: "POST",
           data: {
             action: "id",
-            hint: BookId,
+            hint: "" + BookId,
           },
         })
         .then((resp) => {
           console.log(resp);
-          this.setData({
-            comment_temp: resp.data.data,
-          })
+          
           var book_comment;
           book_comment = resp.data.data;
           book_comment.Comment = Comment;
-          book_comment.ID = ID;
+          book_comment.CommentId = ID;
           book_comment.BookId = BookId;
+
+          console.log(Comment);
+          var temp = this.data.book_comments;
+          temp.push(book_comment);
           this.setData({
-            book_comments: resp.data.data,
+            book_comments: temp,
           })
         })
         .catch((e) => {
           console.log(e);
         });
     }
-    console.log("Position end");
   },
 
   /**
