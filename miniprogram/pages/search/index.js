@@ -42,14 +42,16 @@ Page({
   },
 
   readBook: function(e){
-    console.log(e.currentTarget.dataset);
+    // console.log(e.currentTarget.dataset);
     var bookname = e.currentTarget.dataset.bookname;
     var bookdesc = e.currentTarget.dataset.bookcontent;
     var bookimg  = e.currentTarget.dataset.bookimg;
-        wx.navigateTo({
-          url:"../detail/detail?title=" + bookname + '&con=' + bookdesc +'&img=' + bookimg
-        });
+    var bookid   = e.currentTarget.dataset.bookid;
+    wx.navigateTo({
+      url:"../detail/detail?title=" + bookname + '&con=' + bookdesc +'&img=' + bookimg + '&id=' + bookid
+    });
   },
+
 
   /**
    * 生命周期函数--监听页面加载

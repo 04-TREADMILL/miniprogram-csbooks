@@ -219,7 +219,7 @@ Page({
 
   
       console.log("this is talks");
-      console.log(T);
+      console.log(this.talks);
 
       wx.cloud
       .callContainer({
@@ -390,6 +390,7 @@ submit: function (e) {//这个是评论上传函数，是需要点击事件触�
     })
   }
   var T = this.data.talks;
+  
   this.setData({
     talks:T,
   })
