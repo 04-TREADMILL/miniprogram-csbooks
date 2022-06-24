@@ -49,14 +49,15 @@ class = "text-center"
                 <text class="{{currentTabsIndex==index?'on':''}}">精彩评论</text>
             </view>
     </view>
-  <view class='newsBox'>
+  <view class='newsBox'  >
     <block  wx:for="{{talks}}"  wx:for-index="talks" wx:key="talks">
       <view class='container-content'>
-          <view class='user-info'>
-            <image class='user-head' src="https://thirdwx.qlogo.cn/mmopen/vi_32/jBIibxuAJ7DsOWKawa3QziaV8riczgH55b7NS8UaZxKyOtyqiakPh7SLvHNibpBGyDbl6YiatXmTKNKByMEz8ibah7Uiaw/132"mode='aspectFill'></image>
+
+          <view class='user-info' >
+            <image class='user-head' src="{{item.ava}}" mode='aspectFill'></image>
             <view class='user-name-time'>
-              <view class='user-name'>用户</view>
-              <view class='user-publish-time'>{{item.CreateAt}}</view>
+              <view class='user-name'>{{item.nin}}</view>
+              <view class='user-publish-time'>{{item.CreatedAt}}</view>
             </view>
             </view>
             <view class='content'>
