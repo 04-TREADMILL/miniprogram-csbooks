@@ -70,6 +70,22 @@
                     </l-card>
                 </view>
     </view>
+    <view class='card_5'>
+                <view catchtap="readBook"data-bookName='{{SwiperList[4].Name}}' 
+                data-bookImg='{{SwiperList[4].ImageUrl}}'
+                data-bookContent='{{SwiperList[4].Description}}' 
+                data-bookId='{{SwiperList[4].Id}}'>
+                    <l-card type="primary" 
+                    full="{{true}}"
+                    position="left"
+                    image="{{SwiperList[4].ImageUrl}}"
+                    title="{{SwiperList[4].Name}}">
+                        <view class="content">
+                        {{tools.sub(SwiperList[4].Description)}}
+                        </view>
+                    </l-card>
+                </view>
+    </view>
 </view>
 
   

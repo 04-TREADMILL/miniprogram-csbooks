@@ -7,7 +7,7 @@ Page({
      */
     data: {
         SwiperList:[],
-        QuiryBookName:["现代操作系统", "计算机图形学", "C和指针","Head First Java"],
+        QuiryBookName:["现代操作系统", "计算机图形学", "C和指针","Head First Java", "操作系统真相还原"],
     },
 
 
@@ -156,7 +156,7 @@ Page({
         console.log(res)
       }
     })
-        for(var count = 0; count < 4; count++){
+        for(var count = 0; count < 5; count++){
             wx.cloud
                 .callContainer({
                 config: {
