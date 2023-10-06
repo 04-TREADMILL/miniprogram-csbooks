@@ -9,23 +9,23 @@
 
 ### 首页
 
-![](https://s2.loli.net/2022/06/26/umV4TNYDSijc7FG.jpg)
+![](assets/umV4TNYDSijc7FG.jpg)
 
 我们选取了几本经典的计算机书籍进行滑动展示
 
 ### 分类
 
-![img](https://s2.loli.net/2022/06/26/EKvcVQ79pw2TS4Z.jpg)
+![](assets/EKvcVQ79pw2TS4Z.jpg)
 
 对上百本计算机学科的书进行分类，方便查询
 
-![img](https://s2.loli.net/2022/06/26/jNHXDc1tVvxyTer.jpg)
+![](assets/jNHXDc1tVvxyTer.jpg)
 
 点击一本书，即可查看介绍和评论
 
 ### 我的
 
-![img](https://s2.loli.net/2022/06/26/1jL9rnaD25m8RJp.jpg)
+![](assets/1jL9rnaD25m8RJp.jpg)
 
 主要包括了登录，收藏和查看评论功能
 
@@ -51,7 +51,7 @@ https://github.com/TaleLin/lin-ui
 
 **在 miniprogram 文件夹下**
 
-```
+```bash
 $ npm init -y
 $ npm install lin-ui
 ```
